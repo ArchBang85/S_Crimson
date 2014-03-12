@@ -128,6 +128,8 @@ class Object:
         if self.item: #tell the item component its owner
             self.item.owner = self
 
+        self.description = setDescription()
+
     def move_towards(self, target_x, target_y):
         # get the distance and vector from self to target
         dx = target_x - self.x
@@ -168,6 +170,8 @@ class Object:
         global objects
         objects.remove(self)
         objects.insert(0, self)
+
+
 
 class Item:
     def __init__(self, use_function=None):
@@ -281,6 +285,12 @@ class BasicMonster:
 ###############################################################################
 #                                                                     FUNCTIONS
 
+def setDescription():
+    # Build how descriptions are set for objects here
+    roll = libtcod.random_get_int(0, 0, len(esineet)-1)
+    return esineet[roll]
+
+### WORLD GENERATION ##########################################################
 def create_room(room):
     global map
     #go through tiles in the rectangle and make them passable
@@ -426,7 +436,9 @@ def make_map():
             #finally, append the new room to the list
             rooms.append(new_room)
             num_rooms += 1
+###############################################################################
 
+### MAP DRAWING ###############################################################
 def render_all():
     global fov_map, color_dark_wall, color_light_wall
     global color_light_groundm, color_dark_ground
@@ -484,9 +496,11 @@ def render_all():
     #display names of objects under the mouse
     libtcod.console_set_default_foreground(panel, libtcod.light_gray)
     libtcod.console_print_ex(panel, 1, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_names_under_mouse())
+    libtcod.console_print_ex(panel, SCREEN_WIDTH - 30, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_description_under_mouse())
 
     #blit the panel to the root console
     libtcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
+###############################################################################
 
 def torch_dimmer():
     global TORCH_COUNTER
@@ -517,6 +531,8 @@ def player_move_or_attack(dx, dy):
     else:
         player.move(dx, dy)
         fov_recompute = True
+
+### CONTROLS ##################################################################
 
 def handle_keys():
     global key
@@ -572,7 +588,7 @@ def handle_keys():
 
         #
 
-### ITEM FUNCTIONS ###
+### ITEM FUNCTIONS ############################################################
 
 def cast_heal():
     #unit healing
@@ -585,7 +601,7 @@ def cast_heal():
 
 def cast_lightning():
     # find the closest enemy within a maximum range and damage it
-    monster = closest_monster(LIGHTNING_RANGE)
+    monster = closest_monster(LIGHTNING_RANGE) # closest_monster still needs to be defined
     if monster is None: # No enemy within maximum range
         message('No enemy is close enough for the lightning to strike.', libtcod.dark_red)
         return 'cancelled'
@@ -620,6 +636,19 @@ def get_names_under_mouse():
     #join names with a comma
     names = ', '.join(names)
     return names.capitalize()
+
+def get_description_under_mouse():
+    global mouse
+    #return a string with all objects under the mouse
+    (x, y) = (mouse.cx, mouse.cy)
+
+    #make a list with names of all legit objects
+    descriptions = [obj.description for obj in objects
+        if obj.x ==x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
+
+    #join names with a comma
+    descriptions = ', '.join(descriptions)
+    return descriptions.capitalize()
 
 def render_bar(x, y, total_width, name, value, maximum, bar_color, back_color):
     #render a GUI bar
@@ -732,7 +761,7 @@ mouse = libtcod.Mouse()
 key = libtcod.Key()
 
 ### LOOP ###
-message("Hello world", libtcod.gray)
+message("Shit Crimson", libtcod.gray)
 libtcod.sys_set_fps(LIMIT_FPS)
 while not libtcod.console_is_window_closed():
 

@@ -1,5 +1,4 @@
 __author__ = 'Autio'
-
 ### A stab at a spell system ###
 
 # The idea is that you need at least 3 letters to form a workable spell
@@ -11,9 +10,7 @@ __author__ = 'Autio'
 
 # The player starts with a full alphabet but each consonant, once used, is gone forever
 
-
 # read in the allowed combinations here
-
 
 # try if a spell is legitimate and return its effects
 
@@ -31,6 +28,7 @@ consonants = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ"
 
 # Read in the runebook
 def readSpellsToDict(filePath):
+    # Read a 2-column CSV file into a dictionary
     outputDict = {}
 
     with open(filePath, 'rb') as source:
@@ -45,13 +43,14 @@ print valtaKirja
 spell = alphabet[1] + alphabet[0] + alphabet[2]
 
 def mapSpells():
+    # map from spellbook to powers
     consonantMap =  {'1' : "dark", '2' : "light", '3' : "ice", '4' : "fire", '5' : "air", '6' : "rock"}
 
     print consonantMap
 
 mapSpells()
 
-def castRune(runes):
+def checkRunes(runes):
 
     vowelCount = 0
     consonantCount = 0
@@ -90,7 +89,8 @@ def removeLetters(spell):
                 i += 1
 
 # no errors in casting
-if castRune(spell) == "success":
+if checkRunes(spell) == "success":
     #print 'removing letters'
     removeLetters(spell)
 
+# How do I want the spells to output? #
