@@ -64,6 +64,31 @@ color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
 color_light_wall = libtcod.Color(50, 50, 150) # purplish
 color_light_ground = libtcod.Color(100, 140, 170) # light blue
 
+###############################################################################
+#                                                                         WORDS
+
+####################  Read in texts from the preset files  #####################
+
+def readCSVtoArray(filePath):
+    outputArray = []
+
+    with open(filePath, 'rb') as source:
+        for line in source:
+            outputArray.append(line[:-2])
+    return outputArray
+
+toimiVallat = readCSVtoArray("toimiVallat.csv")
+ilkiVallat = readCSVtoArray("ilkiVallat.csv")
+
+ikkunat = readCSVtoArray("ikkunat.csv")
+ovet = readCSVtoArray("ovet.csv")
+esineet = readCSVtoArray("esineet.csv")
+
+print toimiVallat
+print ilkiVallat
+print ikkunat
+print ovet
+print esineet
 
 ###############################################################################
 #                                                                       CLASSES
