@@ -16,6 +16,8 @@ import os
 import libtcodpy as libtcod
 import math
 import textwrap
+import Vallat
+
 
 #size of window
 SCREEN_WIDTH = 120
@@ -77,12 +79,12 @@ def readCSVtoArray(filePath):
             outputArray.append(line[:-2])
     return outputArray
 
-toimiVallat = readCSVtoArray("toimiVallat.csv")
-ilkiVallat = readCSVtoArray("ilkiVallat.csv")
+toimiVallat = readCSVtoArray("sanat\\toimiVallat.csv")
+ilkiVallat = readCSVtoArray("sanat\\ilkiVallat.csv")
 
-ikkunat = readCSVtoArray("ikkunat.csv")
-ovet = readCSVtoArray("ovet.csv")
-esineet = readCSVtoArray("esineet.csv")
+ikkunat = readCSVtoArray("sanat\\ikkunat.csv")
+ovet = readCSVtoArray("sanat\\ovet.csv")
+esineet = readCSVtoArray("sanat\\esineet.csv")
 
 print toimiVallat
 print ilkiVallat
