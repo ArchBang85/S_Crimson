@@ -64,6 +64,15 @@ color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
 color_light_wall = libtcod.Color(50, 50, 150) # purplish
 color_light_ground = libtcod.Color(100, 140, 170) # light blue
 
+# counters
+
+# jitters
+#description move counter
+dCount = 500
+descriptionX = SCREEN_WIDTH - 40
+descriptionY = 0
+
+
 ###############################################################################
 #                                                                         WORDS
 
@@ -441,6 +450,7 @@ def render_all():
     global fov_map, color_dark_wall, color_light_wall
     global color_light_groundm, color_dark_ground
     global fov_recompute
+    global dCount, descriptionX, descriptionY
 
     if fov_recompute:
         #recompute FOV if needed
@@ -494,7 +504,22 @@ def render_all():
     #display names of objects under the mouse
     libtcod.console_set_default_foreground(panel, libtcod.light_gray)
     libtcod.console_print_ex(panel, 1, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_names_under_mouse())
-    libtcod.console_print_ex(panel, SCREEN_WIDTH - 30, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_description_under_mouse())
+
+    # Randomise the description display point slightly
+    dCount -= 1
+    if dCount < 0:
+        descriptionX = SCREEN_WIDTH - 42 + libtcod.random_get_int(0, 0, 3)
+        descriptionY = libtcod.random_get_int(0, 0, 3)
+        dCount = libtcod.random_get_int(0, 490, 510)
+
+    #print the description lines
+    y = 1
+    for line in get_description_under_mouse():
+        libtcod.console_set_default_foreground(panel, color)
+        libtcod.console_print_ex(panel, descriptionX, descriptionY + y, libtcod.BKGND_NONE, libtcod.LEFT, line)
+        y += 1
+
+
 
     #blit the panel to the root console
     libtcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
@@ -640,13 +665,18 @@ def get_description_under_mouse():
     #return a string with all objects under the mouse
     (x, y) = (mouse.cx, mouse.cy)
 
-    #make a list with names of all legit objects
+    #make a list with descriptions of all legit objects
     descriptions = [obj.description for obj in objects
         if obj.x ==x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
 
+    # descriptions need to break lines after each 28 characters
+    n = 36
+
+    #textwrap.wrap(
     #join names with a comma
     descriptions = ', '.join(descriptions)
-    return descriptions.capitalize()
+    d = str(descriptions)
+    return textwrap.wrap(d, n)
 
 def render_bar(x, y, total_width, name, value, maximum, bar_color, back_color):
     #render a GUI bar

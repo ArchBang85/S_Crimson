@@ -42,7 +42,7 @@ __author__ = 'Autio'
 # i     = self
 # o     = adjacent
 # u     = another
-# y     =
+# y     = nearest
 
 # Contents:
 # a     = access / blocking
@@ -115,6 +115,10 @@ def checkRunes(runes):
         # Error - spell has no content
         return "noContent"
 
+    if runes[0] and runes[3] not in consonants:
+        # Error - spell has no power
+        return "noPower"
+
     return "success"
 
 def removeLetters(spell):
@@ -137,6 +141,18 @@ def castRunes(runes):
         content = runeContents[runes[2]]
         removeLetters(runes)
         return power, form, content
+
+    elif runeResponse == "NoForm":
+        # display message of formless magic
+        x = 1
+
+    elif runeResponse == "NoContent":
+        # display message of contentless magic
+        x = 1
+
+    elif runeResponse == "NoPower":
+        # display message of powerless magic
+        x = 1
 
 print castRunes('hyik')
 
