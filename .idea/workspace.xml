@@ -23,37 +23,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ShitCrimson.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.90804595" vertical-offset="3381" max-vertical-offset="9570">
+            <state line="46" column="23" selection-start="994" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="9780">
               <folding>
                 <element signature="e#498#507#0" expanded="true" />
-                <element signature="e#5913#6408#0" expanded="false" />
-                <element signature="e#7419#7562#0" expanded="false" />
-                <element signature="e#7596#7912#0" expanded="false" />
-                <element signature="e#7938#8589#0" expanded="false" />
-                <element signature="e#16989#17116#0" expanded="false" />
-                <element signature="e#17157#17701#0" expanded="false" />
-                <element signature="e#17805#19700#0" expanded="false" />
-                <element signature="e#19802#20043#0" expanded="false" />
-                <element signature="e#20071#20617#0" expanded="false" />
-                <element signature="e#20691#21006#0" expanded="false" />
-                <element signature="e#24265#24598#0" expanded="false" />
-                <marker date="1394668536375" expanded="true" signature="1674:2262" placeholder="..." />
-                <marker date="1394668536375" expanded="true" signature="8988:14103" placeholder="..." />
+                <element signature="e#5910#6405#0" expanded="false" />
+                <element signature="e#7935#8586#0" expanded="false" />
+                <element signature="e#16986#17113#0" expanded="false" />
+                <element signature="e#17154#17698#0" expanded="false" />
+                <element signature="e#17802#19697#0" expanded="false" />
+                <element signature="e#19799#20040#0" expanded="false" />
+                <element signature="e#20068#20614#0" expanded="false" />
+                <element signature="e#20688#21003#0" expanded="false" />
+                <element signature="e#24262#24595#0" expanded="false" />
+                <marker date="1394741535760" expanded="true" signature="1671:2259" placeholder="..." />
+                <marker date="1394741535760" expanded="true" signature="8985:14100" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vallat.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Vallat.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Vallat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="0" selection-start="2667" selection-end="2667" vertical-scroll-proportion="0.0" vertical-offset="413" max-vertical-offset="1020">
+            <state line="47" column="26" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.6976744" vertical-offset="315" max-vertical-offset="2250">
               <folding>
-                <element signature="e#1550#2231#0" expanded="false" />
-                <element signature="e#2263#2513#0" expanded="false" />
+                <element signature="e#3666#3908#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -69,14 +66,16 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Vallat.py" />
         <option value="$PROJECT_DIR$/ShitCrimson.py" />
+        <option value="$PROJECT_DIR$/Vallat.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1380" />
-    <option name="height" value="1018" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1034" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -129,17 +128,17 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="options.searchVisible" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.ShitCrimson">
+  <component name="RunManager" selected="Python.Vallat">
     <configuration default="false" name="ShitCrimson" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -303,8 +302,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.ShitCrimson" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Vallat" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Vallat" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ShitCrimson" />
       </list>
     </recent_temporary>
   </component>
@@ -335,26 +334,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1380" height="1018" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1034" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1715138" sideWeight="0.6639629" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12177122" sideWeight="0.665529" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15852335" sideWeight="0.6639629" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33603707" sideWeight="0.19463088" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33603707" sideWeight="0.80536914" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.334471" sideWeight="0.19451766" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.334471" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -371,34 +370,60 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="9570">
+          <folding>
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#5910#6405#0" expanded="false" />
+            <element signature="e#7935#8586#0" expanded="false" />
+            <element signature="e#16986#17113#0" expanded="false" />
+            <element signature="e#17154#17698#0" expanded="false" />
+            <element signature="e#17802#19697#0" expanded="false" />
+            <element signature="e#19799#20040#0" expanded="false" />
+            <element signature="e#20068#20614#0" expanded="false" />
+            <element signature="e#20688#21003#0" expanded="false" />
+            <element signature="e#24262#24595#0" expanded="false" />
+            <marker date="1394741535760" expanded="true" signature="1671:2259" placeholder="..." />
+            <marker date="1394741535760" expanded="true" signature="8985:14100" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Vallat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="0" selection-start="2667" selection-end="2667" vertical-scroll-proportion="0.0" vertical-offset="413" max-vertical-offset="1020">
+        <state line="96" column="0" selection-start="2667" selection-end="2667" vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="1530">
           <folding>
-            <element signature="e#1550#2231#0" expanded="false" />
-            <element signature="e#2263#2513#0" expanded="false" />
+            <element signature="e#3666#3908#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.90804595" vertical-offset="3381" max-vertical-offset="9570">
+        <state line="46" column="23" selection-start="994" selection-end="1007" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="9780">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#5913#6408#0" expanded="false" />
-            <element signature="e#7419#7562#0" expanded="false" />
-            <element signature="e#7596#7912#0" expanded="false" />
-            <element signature="e#7938#8589#0" expanded="false" />
-            <element signature="e#16989#17116#0" expanded="false" />
-            <element signature="e#17157#17701#0" expanded="false" />
-            <element signature="e#17805#19700#0" expanded="false" />
-            <element signature="e#19802#20043#0" expanded="false" />
-            <element signature="e#20071#20617#0" expanded="false" />
-            <element signature="e#20691#21006#0" expanded="false" />
-            <element signature="e#24265#24598#0" expanded="false" />
-            <marker date="1394668536375" expanded="true" signature="1674:2262" placeholder="..." />
-            <marker date="1394668536375" expanded="true" signature="8988:14103" placeholder="..." />
+            <element signature="e#5910#6405#0" expanded="false" />
+            <element signature="e#7935#8586#0" expanded="false" />
+            <element signature="e#16986#17113#0" expanded="false" />
+            <element signature="e#17154#17698#0" expanded="false" />
+            <element signature="e#17802#19697#0" expanded="false" />
+            <element signature="e#19799#20040#0" expanded="false" />
+            <element signature="e#20068#20614#0" expanded="false" />
+            <element signature="e#20688#21003#0" expanded="false" />
+            <element signature="e#24262#24595#0" expanded="false" />
+            <marker date="1394741535760" expanded="true" signature="1671:2259" placeholder="..." />
+            <marker date="1394741535760" expanded="true" signature="8985:14100" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vallat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="26" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.6976744" vertical-offset="315" max-vertical-offset="2250">
+          <folding>
+            <element signature="e#3666#3908#0" expanded="false" />
           </folding>
         </state>
       </provider>

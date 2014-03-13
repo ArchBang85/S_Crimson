@@ -30,8 +30,8 @@ MAX_ROOM_MONSTERS = 3
 MAX_ROOM_ITEMS = 2
 
 #size of map
-MAP_WIDTH = 120
-MAP_HEIGHT = 65
+MAP_WIDTH = 80
+MAP_HEIGHT = 55
 
 LIMIT_FPS = 20
 
@@ -58,8 +58,6 @@ INVENTORY_WIDTH = 50
 HEAL_AMOUNT = 4 # how much a potion heals by
 LIGHTNING_RANGE = 5
 LIGHTNING_DAMAGE = 20
-
-
 
 color_dark_wall = libtcod.Color(0, 0, 100) # darker purple
 color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue

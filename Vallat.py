@@ -18,6 +18,49 @@ __author__ = 'Autio'
 # should be shape 'consonant/vowel/consonant' but can chain them?
 # 'rixbetfyz'
 
+
+# 13/03/2014 reworking
+# following on from conversing with Darren I think it's best to take his idea that
+# the distance between two consonants establishes the strength
+
+# further to that the polarity establishes something further
+
+# retain the vowel in the middle, actually have two
+# one sets the form
+# one sets the content
+
+#e.g. 'BAUM' -> medium strong enemy targeting damage spell
+#     'VIIT' -> weak etc
+
+# What do the vowels stand for?
+
+# consonant, form, content, consonant
+
+# Forms:
+# a     = area
+# e     = line
+# i     = self
+# o     = adjacent
+# u     = another
+# y     =
+
+# Contents:
+# a     = access / blocking
+# e     =
+# i     =
+# o     = healing / damage
+# u     =
+# y     = knowledge / confusion
+
+
+# How should the spellcasting be structured?
+# 1. see if it's a valid spell, respond appropriately if not
+#       2. establish the form, content and power of the spell
+#           3. remove the used consonants from the alphabet
+#               4. play out the effects of the successfully cast spell
+
+
+
 # runes the player can choose from
 alphabetString = 'abcdefghijklmnopqrstuvwxyz'
 alphabet = []
@@ -26,55 +69,51 @@ for l in alphabetString: alphabet.append(l)
 vowels = "aeiouyAEIOUY"
 consonants = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ"
 
-# Read in the runebook
-def readSpellsToDict(filePath):
-    # Read a 2-column CSV file into a dictionary
-    outputDict = {}
+runeForms =     \
+                {
+                    'a' : 1,
+                    'e' : 2,
+                    'i' : 3,
+                    'o' : 4,
+                    'u' : 5,
+                    'y' : 6
+                }
 
-    with open(filePath, 'rb') as source:
-        for line in source:
-            sides = line.split(',')
+runeContents =  \
+                {
+                    'a' : 1,
+                    'e' : 2,
+                    'i' : 3,
+                    'o' : 4,
+                    'u' : 5,
+                    'y' : 6
+                }
 
-            outputDict[sides[0]] = sides[1][:-2]
-    return outputDict
+def spellPower(runes):
+    # looks at the positions of the consonants in the alphabet
+    # and returns the difference, positive or negative
+    i = 0
+    a = 0
+    b = 0
+    while i < len(alphabet):
+        if runes[0] == alphabet[i]:
+            a = i
+        if runes[3] == alphabet[i]:
+            b = i
+        i += 1
+    return (b-a)
 
-valtaKirja = readSpellsToDict("vallat\\valtakirja.csv")
-print valtaKirja
-spell = alphabet[1] + alphabet[0] + alphabet[2]
 
-def mapSpells():
-    # map from spellbook to powers
-    consonantMap =  {'1' : "dark", '2' : "light", '3' : "ice", '4' : "fire", '5' : "air", '6' : "rock"}
-
-    print consonantMap
-
-mapSpells()
 
 def checkRunes(runes):
+    # valid form [consonant, vowel, vowel, consonant]
 
-    vowelCount = 0
-    consonantCount = 0
-    for letter in runes:
-        if letter in vowels:
-            vowelCount += 1
-        elif letter in consonants:
-            consonantCount += 1
-
-    if vowelCount == 0:
-         # Error - power takes no form
-        return "noVowel"
-
-    if consonantCount < 2:
-        # Error - power has no substance
-        return "noConsonants"
-
-    # find all consonant-vowel-consonant combinations
-    combinations = []
-    l = 0
-    while l < len(runes)-2:
-        if runes[l] in consonants and runes[l+1] in vowels and runes[l+2] in consonants:
-            combinations.append(runes[l]+runes[l+1] + runes[l+2])
-        l += 1
+    if runes[1] not in vowels:
+        # Error - spell has takes no form
+        return "noForm"
+    if runes[2] not in vowels:
+        # Error - spell has no content
+        return "noContent"
 
     return "success"
 
@@ -88,9 +127,28 @@ def removeLetters(spell):
                     alphabet[i] = ""
                 i += 1
 
-# no errors in casting
-if checkRunes(spell) == "success":
-    #print 'removing letters'
-    removeLetters(spell)
+def castRunes(runes):
 
-# How do I want the spells to output? #
+    runeResponse = checkRunes(runes)
+
+    if runeResponse == "success":
+        power = spellPower(runes)
+        form = runeForms[runes[1]]
+        content = runeContents[runes[2]]
+        removeLetters(runes)
+        return power, form, content
+
+print castRunes('hyik')
+
+
+# Read in the runebook | redundant
+def readSpellsToDict(filePath):
+    # Read a 2-column CSV file into a dictionary
+    outputDict = {}
+
+    with open(filePath, 'rb') as source:
+        for line in source:
+            sides = line.split(',')
+
+            outputDict[sides[0]] = sides[1][:-2]
+    return outputDict
