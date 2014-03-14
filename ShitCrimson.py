@@ -20,8 +20,8 @@ import Vallat
 
 
 #size of window
-SCREEN_WIDTH = 120
-SCREEN_HEIGHT = 75
+SCREEN_WIDTH = 130
+SCREEN_HEIGHT = 80
 
 ROOM_MAX_SIZE = 14
 ROOM_MIN_SIZE = 6
@@ -68,9 +68,13 @@ color_light_ground = libtcod.Color(100, 140, 170) # light blue
 
 # jitters
 #description move counter
-dCount = 500
+dCount = 250
 descriptionX = SCREEN_WIDTH - 40
 descriptionY = 0
+
+# initial image coordinates (only a sliver of the portraits are shown at any given time)
+imgX = libtcod.random_get_int(0, 12, 52)
+imgY = libtcod.random_get_int(0, 0, 32)
 
 
 ###############################################################################
@@ -122,6 +126,9 @@ class Object:
         self.name = name
         self.color = color
         self.blocks = blocks
+
+        # temp img holder
+        self.img = "kuvat\\portrait1.png"
 
         self.fighter = fighter
         if self.fighter: #tell the fighter component its ownner
@@ -451,7 +458,7 @@ def render_all():
     global fov_map, color_dark_wall, color_light_wall
     global color_light_ground, color_dark_ground
     global fov_recompute
-    global dCount, descriptionX, descriptionY
+    global dCount, descriptionX, descriptionY, imgX, imgY
 
     if fov_recompute:
         #recompute FOV if needed
@@ -510,9 +517,9 @@ def render_all():
     # Randomise the description display point slightly
     dCount -= 1
     if dCount < 0:
-        descriptionX = SCREEN_WIDTH - 42 + libtcod.random_get_int(0, 0, 3)
-        descriptionY = libtcod.random_get_int(0, 0, 3)
-        dCount = libtcod.random_get_int(0, 490, 510)
+        descriptionX = SCREEN_WIDTH - 42 + libtcod.random_get_int(0, 0, 2)
+        descriptionY = libtcod.random_get_int(0, 0, 2)
+
 
     y = 1
     for line in get_description_under_mouse():
@@ -522,8 +529,22 @@ def render_all():
 
     # display portraits
 
+    # image natural size is 96 x 96
+    # image, panel, x corner on panel, y corner on panel,
+    # Xth pixel of image to start from, Yth pixel of image to start from width, height
+    buffer = 17
+    imgPath = str(get_image_under_mouse())
+    img = libtcod.image_load(imgPath)
+    #img = libtcod.image_load('kuvat\\portrait1.png')
+    if dCount < 0:
+        imgX = libtcod.random_get_int(0, 0, 64)
+        imgY = libtcod.random_get_int(0, 0, 32)
+        dCount = libtcod.random_get_int(0, 250, 350)
+
+    #answer should be 16 + 1 for black border
+    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 32, 96)
+
     # display rune alphabet
-    #
     y = 1
     for line in get_alphabet():
         libtcod.console_print_ex(panel, SCREEN_WIDTH - 80, y, libtcod.BKGND_NONE, libtcod.LEFT, line)
@@ -684,7 +705,7 @@ def get_description_under_mouse():
 
     #make a list with descriptions of all legit objects
     descriptions = [obj.description for obj in objects
-        if obj.x ==x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
+        if obj.x == x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
 
     # descriptions need to break lines after each 28 characters
     n = 36
@@ -694,6 +715,18 @@ def get_description_under_mouse():
     descriptions = ', '.join(descriptions)
     d = str(descriptions)
     return textwrap.wrap(d, n)
+
+def get_image_under_mouse():
+    (x, y) = (mouse.cx, mouse.cy)
+    images = [obj.img for obj in objects
+        if obj.x == x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
+    for i in range(0, len(images)):
+        if images[i] != None:
+            img = images[i]
+            print img
+            #libtcod.image_load('kuvat\\portrait1.png')
+            return img
+    return
 
 def get_alphabet():
     alphabet = Vallat.alphabet
