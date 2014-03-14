@@ -170,3 +170,5 @@ def readSpellsToDict(filePath):
 
             outputDict[sides[0]] = sides[1][:-2]
     return outputDict
+
+#Line shaped spells

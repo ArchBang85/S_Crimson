@@ -19,6 +19,7 @@ import textwrap
 import Vallat
 
 
+
 #size of window
 SCREEN_WIDTH = 130
 SCREEN_HEIGHT = 80
@@ -62,7 +63,7 @@ LIGHTNING_DAMAGE = 20
 color_dark_wall = libtcod.Color(0, 0, 100) # darker purple
 color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
 color_light_wall = libtcod.Color(50, 50, 150) # purplish
-color_light_ground = libtcod.Color(100, 140, 170) # light blue
+color_light_ground = libtcod.Color(100, 85, 75) # light brown
 
 # counters
 
@@ -459,24 +460,51 @@ def make_map():
 
 ### SPELL SHAPES ##############################################################
 
+def validDirection(direction):
+    if direction[0] in [-1, 0, 1] and direction[1] in [-1, 0, 1]: return \
+        True
+    else:
+        return False
+
 def lineShape(start, direction, action):
     # valid directions = [-1, 0], [1, 0], [-1, -1], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, -1]
-    global map
-    x = start[0]
-    y = start[1]
+    if validDirection(direction):
 
-    blocked = False
-    while blocked == False:
-        x += direction[0]
-        y += direction[1]
-        activeTile = map[x][y]
+        global map
+        x = start[0]
+        y = start[1]
+        rangeCounter = 10
 
-        if activeTile.block_sight == True:
-            blocked = True
-        # do thang
+        blocked = False
+        while blocked == False:
+            x += direction[0]
+            y += direction[1]
+            activeTile = map[x][y]
+
+            # Make the line stop at walls and things
+            if action != "access":
+                if activeTile.block_sight == True:
+                    blocked = True
+                elif rangeCounter < 0:
+                    blocked = True
+
+            # do thang
+            print action
+
+            # this should cycle through anything in that tile and do stuff if it can be
+
+            # what to do if you are trying to make a wall
+            activeTile.blocked = True
+            activeTile.block_sight = True
 
 
-        print 'zapping tile %s %s' % (x, y)
+            # what to do if you want to damage / heal
+
+            # what to do if you want to see / know
+
+            # what to do if you want to do other stuff
+
+            print 'zapping tile %s %s' % (x, y)
 
 ###############################################################################
 
@@ -693,6 +721,9 @@ def handle_keys():
                 #test line zap
                 print 'player is on tile %s %s' % (player.x, player.y)
                 lineShape([player.x, player.y], [0,1], action = None)
+
+                fov_recompute = True
+                render_all()
 
             return 'no-turn-taken'
 
