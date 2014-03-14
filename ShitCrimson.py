@@ -443,12 +443,13 @@ def make_map():
             #finally, append the new room to the list
             rooms.append(new_room)
             num_rooms += 1
+
 ###############################################################################
 
 ### MAP DRAWING ###############################################################
 def render_all():
     global fov_map, color_dark_wall, color_light_wall
-    global color_light_groundm, color_dark_ground
+    global color_light_ground, color_dark_ground
     global fov_recompute
     global dCount, descriptionX, descriptionY
 
@@ -505,6 +506,7 @@ def render_all():
     libtcod.console_set_default_foreground(panel, libtcod.light_gray)
     libtcod.console_print_ex(panel, 1, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_names_under_mouse())
 
+    # Print the description lines
     # Randomise the description display point slightly
     dCount -= 1
     if dCount < 0:
@@ -512,12 +514,21 @@ def render_all():
         descriptionY = libtcod.random_get_int(0, 0, 3)
         dCount = libtcod.random_get_int(0, 490, 510)
 
-    #print the description lines
     y = 1
     for line in get_description_under_mouse():
         libtcod.console_set_default_foreground(panel, color)
         libtcod.console_print_ex(panel, descriptionX, descriptionY + y, libtcod.BKGND_NONE, libtcod.LEFT, line)
         y += 1
+
+    # display portraits
+
+    # display rune alphabet
+    #
+    y = 1
+    for line in get_alphabet():
+        libtcod.console_print_ex(panel, SCREEN_WIDTH - 80, y, libtcod.BKGND_NONE, libtcod.LEFT, line)
+        y += 1
+    #print get_alphabet()
 
 
 
@@ -607,6 +618,12 @@ def handle_keys():
                     active_item.use()
                     message('Used item.', libtcod.blue)
 
+            if key_char == 'c':
+                #choose runes
+                runes = enterRunes("Try and remember a word: \n")
+                runeResult = Vallat.castRunes(runes)
+                message(str(runeResult), libtcod.amber)
+
             return 'no-turn-taken'
 
         #
@@ -678,6 +695,29 @@ def get_description_under_mouse():
     d = str(descriptions)
     return textwrap.wrap(d, n)
 
+def get_alphabet():
+    alphabet = Vallat.alphabet
+    line1 = ""
+    for l in range(0, 13):
+        line1 += alphabet[l]
+        line1 += " "
+
+    line2 = ""
+    for l in range(13, 26):
+        line2 += alphabet[l]
+        line2 += " "
+
+    blankline = ""
+    for l in range(0, 13):
+        blankline += "  "
+
+    lines = []
+    lines.append(line1)
+    lines.append(blankline)
+    lines.append(line2)
+    return lines
+
+
 def render_bar(x, y, total_width, name, value, maximum, bar_color, back_color):
     #render a GUI bar
     #calculate bar width
@@ -748,11 +788,26 @@ def inventory_menu(header):
     if index is None or len(inventory) == 0: return None
     return inventory[index].item
 
+def enterRunes(header):
+    #show alphabet as options
+    runes = ""
+    print Vallat.alphabet
+    i = 0
+    while i < 4: # 4 is the spell length
+        index = menu(header + " \n" + runes+"\n", Vallat.alphabet, INVENTORY_WIDTH)
+        if index is not None:
+            runes += Vallat.alphabet[index]
+        key = libtcod.console_wait_for_keypress(True)
+        i += 1
+
+    return runes
+
+
 ###############################################################################
 #                                                                     MAIN LOOP
 
 libtcod.console_set_custom_font('arial10x10.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
-libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'python/libtcod tutorial', False)
+libtcod.console_init_root(SCREEN_WIDTH, SCREEN_HEIGHT, 'Shit Crimson | 7DRL 2014 | ArchBang', False)
 con = libtcod.console_new(SCREEN_WIDTH, SCREEN_HEIGHT)
 libtcod.sys_set_fps(LIMIT_FPS)
 
@@ -789,7 +844,7 @@ mouse = libtcod.Mouse()
 key = libtcod.Key()
 
 ### LOOP ###
-message("Shit Crimson", libtcod.gray)
+message("Shit Crimson", libtcod.dark_crimson)
 libtcod.sys_set_fps(LIMIT_FPS)
 while not libtcod.console_is_window_closed():
 

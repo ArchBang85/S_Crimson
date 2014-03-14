@@ -119,6 +119,11 @@ def checkRunes(runes):
         # Error - spell has no power
         return "noPower"
 
+    if runes[0] not in alphabet or runes[3] not in alphabet:
+        # runes forgotten
+        return "forgotten"
+
+
     return "success"
 
 def removeLetters(spell):
@@ -128,7 +133,7 @@ def removeLetters(spell):
             i = 0
             while i < len(alphabet):
                 if l == alphabet[i]:
-                    alphabet[i] = ""
+                    alphabet[i] = " "
                 i += 1
 
 def castRunes(runes):
@@ -153,9 +158,6 @@ def castRunes(runes):
     elif runeResponse == "NoPower":
         # display message of powerless magic
         x = 1
-
-print castRunes('hyik')
-
 
 # Read in the runebook | redundant
 def readSpellsToDict(filePath):
