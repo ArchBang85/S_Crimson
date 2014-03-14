@@ -1,4 +1,4 @@
-__author__ = 'Autio'
+__author__ = 'ArchBang'
 ### A stab at a spell system ###
 
 # The idea is that you need at least 3 letters to form a workable spell
@@ -59,8 +59,6 @@ __author__ = 'Autio'
 #           3. remove the used consonants from the alphabet
 #               4. play out the effects of the successfully cast spell
 
-
-
 # runes the player can choose from
 alphabetString = 'abcdefghijklmnopqrstuvwxyz'
 alphabet = []
@@ -107,12 +105,14 @@ def spellPower(runes):
 
 def checkRunes(runes):
     # valid form [consonant, vowel, vowel, consonant]
-
+    print runes
     if runes[1] not in vowels:
         # Error - spell has takes no form
         return "noForm"
-    if runes[2] not in vowels:
+
+    elif runes[2] not in vowels:
         # Error - spell has no content
+        print runes[2]
         return "noContent"
 
     if runes[0] and runes[3] not in consonants:
@@ -122,7 +122,6 @@ def checkRunes(runes):
     if runes[0] not in alphabet or runes[3] not in alphabet:
         # runes forgotten
         return "forgotten"
-
 
     return "success"
 
@@ -137,7 +136,6 @@ def removeLetters(spell):
                 i += 1
 
 def castRunes(runes):
-
     runeResponse = checkRunes(runes)
 
     if runeResponse == "success":
@@ -145,19 +143,21 @@ def castRunes(runes):
         form = runeForms[runes[1]]
         content = runeContents[runes[2]]
         removeLetters(runes)
-        return power, form, content
+        return power, form, content, 0
 
-    elif runeResponse == "NoForm":
+    elif runeResponse == "noForm":
         # display message of formless magic
-        x = 1
+        return 0, 0, 0, 1
 
-    elif runeResponse == "NoContent":
+    elif runeResponse == "noContent":
         # display message of contentless magic
-        x = 1
+        return 0, 0, 0, 2
 
-    elif runeResponse == "NoPower":
+    elif runeResponse == "noPower":
         # display message of powerless magic
-        x = 1
+        return 0, 0, 0, 3
+
+    else: return 0, 0, 0, 1
 
 # Read in the runebook | redundant
 def readSpellsToDict(filePath):

@@ -36,9 +36,9 @@ MAP_HEIGHT = 55
 LIMIT_FPS = 20
 
 #GUI Settings
-BAR_WIDTH = 20
-PANEL_HEIGHT = 14
-PANEL_Y = SCREEN_HEIGHT - PANEL_HEIGHT
+BAR_WIDTH = 26
+PANEL_HEIGHT = 16
+PANEL_Y = SCREEN_HEIGHT - PANEL_HEIGHT - 1
 
 MSG_X = BAR_WIDTH + 2
 MSG_WIDTH = SCREEN_WIDTH - BAR_WIDTH - 2
@@ -97,11 +97,15 @@ ikkunat = readCSVtoArray("sanat\\ikkunat.csv")
 ovet = readCSVtoArray("sanat\\ovet.csv")
 esineet = readCSVtoArray("sanat\\esineet.csv")
 
-print toimiVallat
-print ilkiVallat
-print ikkunat
-print ovet
-print esineet
+muotovajaat = readCSVtoArray("sanat\\muodoton.csv")
+sisusvajaat = readCSVtoArray("sanat\\lihaton.csv")
+voimavajaat = readCSVtoArray("sanat\\voimaton.csv")
+
+#print toimiVallat
+#print ilkiVallat
+#print ikkunat
+#print ovet
+#print esineet
 
 ###############################################################################
 #                                                                       CLASSES
@@ -119,7 +123,7 @@ class Tile:
 class Object:
     #this is a generic object
     #always represented by a character on the screen
-    def __init__(self, x, y, char, name, color, blocks = False, fighter = None, ai = None, item = None):
+    def __init__(self, x, y, char, name, color, blocks = False, fighter = None, ai = None, item = None, description = None, img = None):
         self.x = x
         self.y = y
         self.char = char
@@ -127,8 +131,9 @@ class Object:
         self.color = color
         self.blocks = blocks
 
-        # temp img holder
-        self.img = "kuvat\\portrait1.png"
+        # portait to show on mouseover
+        self.img = img
+
 
         self.fighter = fighter
         if self.fighter: #tell the fighter component its ownner
@@ -142,7 +147,7 @@ class Object:
         if self.item: #tell the item component its owner
             self.item.owner = self
 
-        self.description = setDescription()
+        self.description = setDescription(name)
 
     def move_towards(self, target_x, target_y):
         # get the distance and vector from self to target
@@ -281,7 +286,7 @@ def monster_death(monster):
 class BasicMonster:
     #AI for the basic monster type
     def take_turn(self):
-        print 'The ' + self.owner.name + ' growls'
+        #print 'The ' + self.owner.name + ' growls'
 
         #If you can see the basic monster, so can they see you
         monster = self.owner
@@ -299,7 +304,8 @@ class BasicMonster:
 ###############################################################################
 #                                                                     FUNCTIONS
 
-def setDescription():
+def setDescription(name):
+    name = 1
     # Build how descriptions are set for objects here
     roll = libtcod.random_get_int(0, 0, len(esineet)-1)
     return esineet[roll]
@@ -451,6 +457,27 @@ def make_map():
             rooms.append(new_room)
             num_rooms += 1
 
+### SPELL SHAPES ##############################################################
+
+def lineShape(start, direction, action):
+    # valid directions = [-1, 0], [1, 0], [-1, -1], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, -1]
+    global map
+    x = start[0]
+    y = start[1]
+
+    blocked = False
+    while blocked == False:
+        x += direction[0]
+        y += direction[1]
+        activeTile = map[x][y]
+
+        if activeTile.block_sight == True:
+            blocked = True
+        # do thang
+
+
+        print 'zapping tile %s %s' % (x, y)
+
 ###############################################################################
 
 ### MAP DRAWING ###############################################################
@@ -535,7 +562,7 @@ def render_all():
     buffer = 17
     imgPath = str(get_image_under_mouse())
     img = libtcod.image_load(imgPath)
-    #img = libtcod.image_load('kuvat\\portrait1.png')
+    #img = libtcod.image_load('kuvat\\portrait1.png')/
     if dCount < 0:
         imgX = libtcod.random_get_int(0, 0, 64)
         imgY = libtcod.random_get_int(0, 0, 32)
@@ -545,9 +572,9 @@ def render_all():
     libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 32, 96)
 
     # display rune alphabet
-    y = 1
+    y = 4
     for line in get_alphabet():
-        libtcod.console_print_ex(panel, SCREEN_WIDTH - 80, y, libtcod.BKGND_NONE, libtcod.LEFT, line)
+        libtcod.console_print_ex(panel, 1, y, libtcod.BKGND_NONE, libtcod.LEFT, line)
         y += 1
     #print get_alphabet()
 
@@ -641,9 +668,31 @@ def handle_keys():
 
             if key_char == 'c':
                 #choose runes
+                castingOutcome = ""
                 runes = enterRunes("Try and remember a word: \n")
                 runeResult = Vallat.castRunes(runes)
-                message(str(runeResult), libtcod.amber)
+                print runeResult
+                if runeResult[3] == 0:
+                    #cast spell
+                    x = 1
+                elif runeResult[3] == 1:
+                    # formless
+                    castingOutcome = muotovajaat[ libtcod.random_get_int(0, 0, len(muotovajaat)-1)]
+
+                elif runeResult[3] == 2:
+                    # contentless
+                    castingOutcome = sisusvajaat[ libtcod.random_get_int(0, 0, len(sisusvajaat)-1)]
+
+                elif runeResult[3] == 3:
+                    # powerless
+                    castingOutcome = voimavajaat[libtcod.random_get_int(0, 0, len(voimavajaat)-1)]
+
+                message(str(castingOutcome), libtcod.darker_azure)
+
+            if key_char == "t":
+                #test line zap
+                print 'player is on tile %s %s' % (player.x, player.y)
+                lineShape([player.x, player.y], [0,1], action = None)
 
             return 'no-turn-taken'
 
@@ -723,7 +772,7 @@ def get_image_under_mouse():
     for i in range(0, len(images)):
         if images[i] != None:
             img = images[i]
-            print img
+            #print img
             #libtcod.image_load('kuvat\\portrait1.png')
             return img
     return
@@ -852,7 +901,7 @@ game_msgs = []
 
 #create player object
 fighter_component = Fighter(hp = 30, defense = 2, power = 5, death_function = player_death)
-player = Object(0, 0, '@', 'player', libtcod.white, blocks = True, fighter = fighter_component)
+player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "You", img = "kuvat\\portrait2.png")
 
 #list of objects, starting with player
 objects = [player]
