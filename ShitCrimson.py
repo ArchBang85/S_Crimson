@@ -532,8 +532,100 @@ def lineShape(start, direction, action):
             #print 'zapping tile %s %s' % (x, y)
 
 def areaShape(start, action, power):
+    global map
+    x = start[0]
+    y = start[1]
+    level = 6
 
-    
+    #level1
+    if level == 1:
+        for targetX in range(x-1, x+2):
+            flashTile(targetX, y)
+        for targetY in range(y-1, y+2):
+            flashTile(x, targetY)
+
+    #level2
+    if level == 2:
+        for targetX in range(x-1, x + 2):
+            for targetY in range(y-1, y + 2):
+                flashTile(targetX, targetY)
+
+    #level3
+    if level == 3:
+        for targetX in range(x-1, x + 2):
+            for targetY in range(y-1, y + 2):
+                flashTile(targetX, targetY)
+
+        flashTile(x-2, y)
+        flashTile(x+2 ,y)
+        flashTile(x, y-2)
+        flashTile(x, y+2)
+
+    #level4
+    if level == 4:
+        for targetX in range(x-1, x + 2):
+            for targetY in range(y-1, y + 2):
+                flashTile(targetX, targetY)
+
+        for targetY in range(y-1, y+2):
+            flashTile(x-2, targetY)
+            flashTile(x+2, targetY)
+
+        for targetX in range(x-1, x+2):
+            flashTile(targetX, y-2)
+            flashTile(targetX, y+2)
+
+    #level5
+    if level == 5:
+        for targetX in range(x-2, x + 3):
+            for targetY in range(y-2, y + 3):
+                flashTile(targetX, targetY)
+
+        flashTile(x+3, y)
+        flashTile(x, y-3)
+        flashTile(x-3, y)
+        flashTile(x, y+3)
+
+    #level6
+    if level == 6:
+        for targetX in range(x-2, x + 3):
+            for targetY in range(y-2, y + 3):
+                flashTile(targetX, targetY)
+
+        for targetY in range(y-2, y+3):
+            flashTile(x-3, targetY)
+            flashTile(x+3, targetY)
+
+        for targetX in range(x-2, x+3):
+            flashTile(targetX, y-3)
+            flashTile(targetX, y+3)
+
+        for targetY in range(y-1, y+2):
+            flashTile(x-4, targetY)
+            flashTile(x+4, targetY)
+
+        for targetX in range(x-1, x+2):
+            flashTile(targetX, y-4)
+            flashTile(targetX, y+4)
+
+    # act on highlighted
+    for y in range(MAP_HEIGHT):
+        for x in range(MAP_WIDTH):
+            if map[x][y].highlight > 0:
+                # do action
+
+                if action == "access":
+                    map[x][y].blocked = False
+                    map[x][y].block_sight = False
+                    map[x][y].explored = True
+                    #print 'flames at %s %s.' % (x, y)
+
+                    # Since the contours of the map have changed, we need to recreate the FOV
+                    createFOV()
+
+    fov_recompute = True
+
+
 
 ###############################################################################
 
@@ -542,7 +634,7 @@ def areaShape(start, action, power):
 def flashTile(x,y):
     global map
     map[x][y].highlight = 1
-    render_all()
+    #render_all()
 
     #map[x][y].highlight = False
 
@@ -617,7 +709,6 @@ def render_all():
     if dCount < 0:
         descriptionX = SCREEN_WIDTH - 42 + libtcod.random_get_int(0, 0, 2)
         descriptionY = libtcod.random_get_int(0, 0, 2)
-
 
     y = 1
     for line in get_description_under_mouse():
@@ -719,7 +810,10 @@ def getDirection():
         elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
             return [2,2]
 
+def chooseTile():
 
+
+    return (x,y)
 
 def handle_keys():
     global key
@@ -803,6 +897,10 @@ def handle_keys():
                 fov_recompute = True
                 render_all()
 
+            if key_char == "a":
+                areaShape([player.x, player.y], "","")
+                fov_recompute = True
+                render_all()
             return 'no-turn-taken'
 
         #
@@ -993,6 +1091,11 @@ def enterRunes(header):
 
     return runes
 
+def createFOV():
+    global fov_map
+    for y in range(MAP_HEIGHT):
+        for x in range(MAP_WIDTH):
+            libtcod.map_set_properties(fov_map, x, y, not map[x][y].block_sight, not map[x][y].blocked)
 
 ###############################################################################
 #                                                                     MAIN LOOP
@@ -1021,9 +1124,7 @@ make_map()
 
 #create the FOV map based on the map just generated
 fov_map = libtcod.map_new(MAP_WIDTH, MAP_HEIGHT)
-for y in range(MAP_HEIGHT):
-    for x in range(MAP_WIDTH):
-        libtcod.map_set_properties(fov_map, x, y, not map[x][y].block_sight, not map[x][y].blocked)
+createFOV()
 
 #Game States
 fov_recompute = True
@@ -1062,5 +1163,3 @@ while not libtcod.console_is_window_closed():
 
         # increment fov_range ticker
         torch_dimmer()
-
-
