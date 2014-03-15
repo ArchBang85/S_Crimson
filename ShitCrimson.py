@@ -18,8 +18,6 @@ import math
 import textwrap
 import Vallat
 
-
-
 #size of window
 SCREEN_WIDTH = 130
 SCREEN_HEIGHT = 80
@@ -48,7 +46,7 @@ MSG_HEIGHT = PANEL_HEIGHT - 1
 # Default FOV algorithm
 FOV_ALGO = 2
 FOV_LIGHT_WALLS = True
-TORCH_RADIUS = 10 #ever x turns diminish torch
+TORCH_RADIUS = 20 #ever x turns diminish torch
 TORCH_COUNTER = 0
 
 # Inventory settings
@@ -64,6 +62,8 @@ color_dark_wall = libtcod.Color(0, 0, 100) # darker purple
 color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
 color_light_wall = libtcod.Color(50, 50, 150) # purplish
 color_light_ground = libtcod.Color(100, 85, 75) # light brown
+
+highlight_color = libtcod.Color(220, 140, 175) # pale pink
 
 # counters
 
@@ -113,9 +113,10 @@ voimavajaat = readCSVtoArray("sanat\\voimaton.csv")
 
 class Tile:
     #a tile on the map and its properties
-    def __init__(self, blocked, block_sight = None):
+    def __init__(self, blocked, block_sight = None, highlight = False):
         self.blocked = blocked
         self.explored = False
+        self.highlight = False
 
         #If a tile is blocked, it also blocks sight by default
         if block_sight is None: block_sight = blocked
@@ -134,7 +135,6 @@ class Object:
 
         # portait to show on mouseover
         self.img = img
-
 
         self.fighter = fighter
         if self.fighter: #tell the fighter component its ownner
@@ -190,8 +190,6 @@ class Object:
         global objects
         objects.remove(self)
         objects.insert(0, self)
-
-
 
 class Item:
     def __init__(self, use_function=None):
@@ -467,6 +465,7 @@ def validDirection(direction):
         return False
 
 def lineShape(start, direction, action):
+    # the action should be
     # valid directions = [-1, 0], [1, 0], [-1, -1], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, -1]
     if validDirection(direction):
 
@@ -477,6 +476,8 @@ def lineShape(start, direction, action):
 
         blocked = False
         while blocked == False:
+            if x == 0 and y == 0:
+                blocked = True
             x += direction[0]
             y += direction[1]
             activeTile = map[x][y]
@@ -485,33 +486,70 @@ def lineShape(start, direction, action):
             if action != "access":
                 if activeTile.block_sight == True:
                     blocked = True
-                elif rangeCounter < 0:
-                    blocked = True
+            elif rangeCounter < 0:
+                blocked = True
 
-            # do thang
-            print action
+            # if creating an open corridor
+            if action == "access":
+                activeTile.blocked = False
+                activeTile.block_sight = False
+                rangeCounter -= 1
 
-            # this should cycle through anything in that tile and do stuff if it can be
-
+            if action == "block":
             # what to do if you are trying to make a wall
-            activeTile.blocked = True
-            activeTile.block_sight = True
+                activeTile.blocked = True
+                activeTile.block_sight = True
+
+            if action == "damage":
+                flashTile(x, y)
+            # what to do if you want to damage
+                #activeTile.blocked = True
+                #activeTile.block_sight = True
+                for object in objects:
+                    if object.fighter and object.fighter.hp > 0 and object.x == x and object.y == y:
+                        object.fighter.take_damage(4)
+
+                       # print object.fighter.hp
+
+            if action == "heal":
+            # what to do if you want to heal
+                activeTile.blocked = True
+                activeTile.block_sight = True
+
+            #print action
 
 
-            # what to do if you want to damage / heal
+            # find the creature in the tile and add to hp
+
+            # find the creature in the tile and subtract from hp
+
 
             # what to do if you want to see / know
 
+
             # what to do if you want to do other stuff
 
-            print 'zapping tile %s %s' % (x, y)
+            #print 'zapping tile %s %s' % (x, y)
+
+def areaShape(start, action, power):
+
+    
 
 ###############################################################################
 
 ### MAP DRAWING ###############################################################
+
+def flashTile(x,y):
+    global map
+    map[x][y].highlight = 1
+    render_all()
+
+    #map[x][y].highlight = False
+
 def render_all():
     global fov_map, color_dark_wall, color_light_wall
     global color_light_ground, color_dark_ground
+    global highlight_color
     global fov_recompute
     global dCount, descriptionX, descriptionY, imgX, imgY
 
@@ -526,6 +564,8 @@ def render_all():
                 visible = libtcod.map_is_in_fov(fov_map, x, y)
                 wall = map[x][y].block_sight
                 if not visible:
+                    if map[x][y].highlight > 0:
+                        map[x][y].highlight -= 1
                     if map[x][y].explored:
                         if wall:
                             libtcod.console_set_char_background(con, x, y, color_dark_wall, libtcod.BKGND_SET)
@@ -533,7 +573,10 @@ def render_all():
                             libtcod.console_set_char_background(con, x, y, color_dark_ground, libtcod.BKGND_SET)
                 else:
                     #it is visible
-                    if wall:
+                    if map[x][y].highlight > 0:
+                        libtcod.console_set_char_background(con, x, y, highlight_color, libtcod.BKGND_SET)
+                        map[x][y].highlight -= 1
+                    elif wall:
                         libtcod.console_set_char_background(con, x, y, color_light_wall)
                     else:
                         libtcod.console_set_char_background(con, x, y, color_light_ground)
@@ -610,6 +653,7 @@ def render_all():
 
     #blit the panel to the root console
     libtcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
+
 ###############################################################################
 
 def torch_dimmer():
@@ -637,12 +681,45 @@ def player_move_or_attack(dx, dy):
     #attack if target found, move otherwise
     if target is not None:
         player.fighter.attack(target)
+        fov_recompute = True
         # print 'The ' + target.name + ' evades your ire.'
     else:
         player.move(dx, dy)
         fov_recompute = True
 
 ### CONTROLS ##################################################################
+
+def getDirection():
+    global key
+    waiting = True
+    while waiting:
+        message('Choose a direction for this ray: ', libtcod.light_gray)
+        key = libtcod.console_wait_for_keypress(True)
+        key = libtcod.console_wait_for_keypress(True)
+        print key.vk
+        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
+            return [0, -1]
+        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
+            return [0, 1]
+        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
+            return [-1, 0]
+        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
+            return [1, 0]
+        #diagonals
+        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
+            return [1, -1]
+        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
+            return [1, 1]
+        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
+            return [-1, -1]
+        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
+            return [-1, 1]
+
+        # cancel
+        elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
+            return [2,2]
+
+
 
 def handle_keys():
     global key
@@ -719,8 +796,9 @@ def handle_keys():
 
             if key_char == "t":
                 #test line zap
+                lineDirection = getDirection()
                 print 'player is on tile %s %s' % (player.x, player.y)
-                lineShape([player.x, player.y], [0,1], action = None)
+                lineShape([player.x, player.y], lineDirection, action = "damage")
 
                 fov_recompute = True
                 render_all()
@@ -878,8 +956,8 @@ def menu(header, options, width):
         letter_index += 1
 
     #blit to the root console
-    x = 3# SCREEN_WIDTH/2 - 35
-    y = SCREEN_HEIGHT/2 - 35# - height
+    x = 3                    # SCREEN_WIDTH/2 - 35
+    y = SCREEN_HEIGHT/2 - 35 # - height
     libtcod.console_blit(menu_window, 0, 0, width, height, 0, x, y, 1.0, 0.7) # last two params define transparency
 
     libtcod.console_flush()
