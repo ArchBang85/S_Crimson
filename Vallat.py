@@ -115,7 +115,7 @@ def checkRunes(runes):
         print runes[2]
         return "noContent"
 
-    if runes[0] and runes[3] not in consonants:
+    if runes[0] and runes[3] not in consonants or runes[0] == runes[3]:
         # Error - spell has no power
         return "noPower"
 

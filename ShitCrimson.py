@@ -29,7 +29,7 @@ MAX_ROOM_MONSTERS = 3
 MAX_ROOM_ITEMS = 2
 
 #size of map
-MAP_WIDTH = 80
+MAP_WIDTH = 90
 MAP_HEIGHT = 55
 
 LIMIT_FPS = 20
@@ -163,10 +163,12 @@ class Object:
 
     def move(self, dx, dy):
         #move by the given amount
-        if not is_blocked(self.x + dx, self.y + dy):
-            self.x += dx
-            self.y += dy
-
+        try:
+            if not is_blocked(self.x + dx, self.y + dy) and (self.x + dx) >= 0 and (self.y +dy) >= 0:
+                self.x += dx
+                self.y += dy
+        except:
+            print 'No tile exists to move to'
     def distance_to(self, other):
         #return the distance to another object
         dx = other.x - self.x
@@ -213,6 +215,8 @@ class Item:
             if self.use_function != 'cancelled':
                 self.use_function()
                 inventory.remove(self.owner) #destroy after usage
+    # define object dropping
+
 
 class Rect:
     #rectangle on the map
@@ -535,7 +539,13 @@ def areaShape(start, action, power):
     global map
     x = start[0]
     y = start[1]
-    level = 6
+    level = 3
+
+    selected = chooseTile([x,y])
+    x = selected[0]
+    y = selected[1]
+
+    # limit range based on map edges
 
     #level1
     if level == 1:
@@ -611,21 +621,23 @@ def areaShape(start, action, power):
     # act on highlighted
     for y in range(MAP_HEIGHT):
         for x in range(MAP_WIDTH):
-            if map[x][y].highlight > 0:
-                # do action
+            try:
+                if map[x][y].highlight > 0:
 
-                if action == "access":
-                    map[x][y].blocked = False
-                    map[x][y].block_sight = False
-                    map[x][y].explored = True
-                    #print 'flames at %s %s.' % (x, y)
+                    # do action
+                    if action == "access":
+                        map[x][y].blocked = False
+                        map[x][y].block_sight = False
+                        map[x][y].explored = True
+                        #print 'flames at %s %s.' % (x, y)
 
-                    # Since the contours of the map have changed, we need to recreate the FOV
-                    createFOV()
+                        # Since the contours of the map have changed, we need to recreate the FOV
+            except:
+                print 'Tile %s, %s is out of bounds.' % (x, y)
+
+    createFOV()
 
     fov_recompute = True
-
-
 
 ###############################################################################
 
@@ -633,9 +645,11 @@ def areaShape(start, action, power):
 
 def flashTile(x,y):
     global map
-    map[x][y].highlight = 1
+    try:
+        map[x][y].highlight = 1
+    except:
+        print 'Cannot reach tile %s, %s in order to highlight it.' % (x, y)
     #render_all()
-
     #map[x][y].highlight = False
 
 def render_all():
@@ -683,6 +697,7 @@ def render_all():
         player.draw()
 
     #blit con to the root console
+   #libtcod.console_blit(con, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0)
     libtcod.console_blit(con, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, 0)
 
     #prepare to render the GUI panel
@@ -740,8 +755,6 @@ def render_all():
         y += 1
     #print get_alphabet()
 
-
-
     #blit the panel to the root console
     libtcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
 
@@ -758,7 +771,6 @@ def torch_dimmer():
 
 def player_move_or_attack(dx, dy):
     global fov_recompute
-
     #where is the player moving to or attacking
     x = player.x + dx
     y = player.y + dy
@@ -810,10 +822,53 @@ def getDirection():
         elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
             return [2,2]
 
-def chooseTile():
+def chooseTile(start):
+    global fov_recompute
+    x = start[0]
+    y = start[1]
+    message("Select your target tile, then press Enter.", libtcod.light_gray)
+
+    selected = False
+    while selected == False:
+        key = libtcod.console_wait_for_keypress(True)
+        key = libtcod.console_wait_for_keypress(True)
+
+        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
+            y -= 1
+        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
+            y += 1
+        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
+            x -= 1
+        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
+            x += 1
+        #diagonals
+        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
+            x += 1
+            y -= 1
+        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
+            x += 1
+            y += 1
+        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
+            x -= 1
+            y -= 1
+        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
+            x -= 1
+            y -= 1
+        elif key.vk == libtcod.KEY_ENTER:
+            selected = True
+
+        flashTile(x, y)
+        fov_recompute = True
+        print 'rendering'
+        render_all()
+        libtcod.console_flush()
+        print x,y
 
 
-    return (x,y)
+
+    return (x, y)
+
+    ##return (x,y)
 
 def handle_keys():
     global key
@@ -898,7 +953,7 @@ def handle_keys():
                 render_all()
 
             if key_char == "a":
-                areaShape([player.x, player.y], "","")
+                areaShape([player.x, player.y], "access","")
                 fov_recompute = True
                 render_all()
             return 'no-turn-taken'
@@ -948,7 +1003,7 @@ def get_names_under_mouse():
 
     #make a list with names of all legit objects
     names = [obj.name for obj in objects
-        if obj.x ==x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
+        if obj.x == x and obj.y == y and libtcod.map_is_in_fov(fov_map, obj.x, obj.y)]
 
     #join names with a comma
     names = ', '.join(names)
@@ -1005,7 +1060,6 @@ def get_alphabet():
     lines.append(blankline)
     lines.append(line2)
     return lines
-
 
 def render_bar(x, y, total_width, name, value, maximum, bar_color, back_color):
     #render a GUI bar
