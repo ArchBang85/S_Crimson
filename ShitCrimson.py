@@ -17,6 +17,8 @@ import libtcodpy as libtcod
 import math
 import textwrap
 import Vallat
+import winsound
+
 
 #size of window
 SCREEN_WIDTH = 130
@@ -361,13 +363,13 @@ def create_item(x, y):
 
     if roll < 20:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '!', 'healing potion', libtcod.violet, item = item_component)
+        item = Object(x, y, '!', 'soothing object', libtcod.violet, item = item_component)
     elif roll < 40:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, 'i', 'happy potion', libtcod.lightest_sepia, item = item_component)
+        item = Object(x, y, '[', 'happy memento', libtcod.lightest_sepia, item = item_component)
     else:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, 'z', 'scroll of lightning thwack', libtcod.lighter_yellow, item = item_component)
+        item = Object(x, y, ']', 'a familiar trinket', libtcod.lighter_yellow, item = item_component)
     objects.append(item)
     item.send_to_back()
 
@@ -469,12 +471,14 @@ def validDirection(direction):
     else:
         return False
 
-def lineShape(start, direction, action):
+def lineShape(start, action, power):
+    global map
     # the action should be
     # valid directions = [-1, 0], [1, 0], [-1, -1], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, -1]
+    direction = getDirection()
     if validDirection(direction):
 
-        global map
+
         x = start[0]
         y = start[1]
         rangeCounter = 10
@@ -494,6 +498,8 @@ def lineShape(start, direction, action):
             elif rangeCounter < 0:
                 blocked = True
 
+            flashTile(x, y)
+
             # if creating an open corridor
             if action == "access":
                 activeTile.blocked = False
@@ -506,7 +512,7 @@ def lineShape(start, direction, action):
                 activeTile.block_sight = True
 
             if action == "damage":
-                flashTile(x, y)
+
             # what to do if you want to damage
                 #activeTile.blocked = True
                 #activeTile.block_sight = True
@@ -712,7 +718,176 @@ def targetOther(start, action, power):
         map[x][y].blocked = False
         map[x][y].block_sight = False
 
+def targetNearest(start, action, power):
+    a = 1
 
+def targetSelf(start, action, power):
+    x = start[0]
+    y = start[1]
+
+    for object in objects:
+        if object.x == x and object.y == y and object.fighter:
+
+            if action == "heal":
+                message("You gain some composure.", libtcod.azure)
+                object.fighter.heal(power)
+
+            elif action == "damage":
+                message("You cause yourself pain.", libtcod.dark_red)
+                object.fighter.take_damage(power)
+
+    if action == "block":
+        map[x][y].blocked = True
+        map[x][y].block_sight = True
+
+    if action == "access":
+        map[x][y].blocked = False
+        map[x][y].block_sight = False
+
+def targetAll(start, action, power):
+    # target a spell on every creature
+    global map
+    thresholds = [1,5,9,13,17,21] # based on the alphabet
+    message("You try to reach out to everything there is.", libtcod.white)
+    # tries to target all but is limited by the power
+    for i in range(len(thresholds)-1, -1,-1):
+        if power > thresholds[i]:
+            level = i+1
+            #print 'level ' + str(level)
+            break
+
+    # how many characters will be targeted
+    level = libtcod.random_get_int(0, -1, 3) + level * 2
+
+    o = 0
+    for object in objects:
+        if object.fighter:
+            o += 1
+
+    if o != 0:
+        power = int(power / o)
+
+    if power == 0: power = 1
+    power = power * 2
+    if power > 6: power = 6
+
+    for o in range(0, level):
+        if objects[o].fighter:
+            if action == "heal":
+                if objects[o].name != "You":
+                    message("%s appears to breathe easier." % objects[o].name, libtcod.azure)
+                else:
+                    message("The colours of the world are sharper to you.", libtcod.azure)
+                objects[o].fighter.heal(power)
+            elif action == "damage":
+                if objects[o].name != "You":
+                    message("The %s repeats unbearable sounds." % objects[o].name, libtcod.dark_red)
+                else:
+                    message("You plead to the silent walls to make the pain stop.", libtcod.brass)
+                objects[o].fighter.take_damage(power)
+
+            elif action == "block":
+
+                map[objects[o].x][objects[o].y].blocked = True
+                map[objects[o].x][objects[o].y].block_sight = True
+            elif action == "access":
+
+                map[objects[o].x][objects[o].y].blocked = False
+                map[objects[o].x][objects[o].y].block_sight = False
+
+    if action == "block": message("You notice the walls begin to close in.", libtcod.brass)
+    elif action == "access":  message("Parts of the wall collapse with a loud noise.", libtcod.brass)
+
+# Auxiliary spell functions
+
+def getDirection():
+    global key
+    waiting = True
+    while waiting:
+        message('Choose a direction for this ray: ', libtcod.light_gray)
+        key = libtcod.console_wait_for_keypress(True)
+        key = libtcod.console_wait_for_keypress(True)
+        print key.vk
+        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
+            return [0, -1]
+        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
+            return [0, 1]
+        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
+            return [-1, 0]
+        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
+            return [1, 0]
+        #diagonals
+        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
+            return [1, -1]
+        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
+            return [1, 1]
+        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
+            return [-1, -1]
+        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
+            return [-1, 1]
+
+        # cancel
+        elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
+            return [2,2]
+
+def chooseTile(start):
+    global fov_recompute
+    global fov_map
+    global map
+    x = start[0]
+    y = start[1]
+    message("Select your target tile, then press Enter.", libtcod.light_gray)
+
+    flashTile(x, y)
+    fov_recompute = True
+    render_all()
+    libtcod.console_flush()
+
+    selected = False
+    while selected == False:
+        key = libtcod.console_wait_for_keypress(True)
+        key = libtcod.console_wait_for_keypress(True)
+
+        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
+            if libtcod.map_is_in_fov(fov_map, x, y-1):
+                y -= 1
+        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
+            if libtcod.map_is_in_fov(fov_map, x, y+1):
+                y += 1
+        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
+            if libtcod.map_is_in_fov(fov_map, x-1, y):
+                x -= 1
+        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
+            if libtcod.map_is_in_fov(fov_map, x+1, y):
+                x += 1
+        #diagonals
+        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
+            if libtcod.map_is_in_fov(fov_map, x+1, y-1):
+                x += 1
+                y -= 1
+        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
+            if libtcod.map_is_in_fov(fov_map, x+1, y+1):
+                x += 1
+                y += 1
+        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
+            if libtcod.map_is_in_fov(fov_map, x-1, y-1):
+                x -= 1
+                y -= 1
+        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
+                if libtcod.map_is_in_fov(fov_map, x-1, y+1):
+                    x -= 1
+                    y += 1
+        elif key.vk == libtcod.KEY_ENTER:
+            selected = True
+
+        flashTile(x, y)
+        fov_recompute = True
+        print 'rendering'
+        render_all()
+        libtcod.console_flush()
+        print x,y
+
+    return (x, y)
 
 
 ###############################################################################
@@ -812,7 +987,7 @@ def render_all():
     # image natural size is 96 x 96
     # image, panel, x corner on panel, y corner on panel,
     # Xth pixel of image to start from, Yth pixel of image to start from width, height
-    buffer = 17
+    buffer = 20
     imgPath = str(get_image_under_mouse())
     img = libtcod.image_load(imgPath)
     #img = libtcod.image_load('kuvat\\portrait1.png')/
@@ -822,7 +997,7 @@ def render_all():
         dCount = libtcod.random_get_int(0, 250, 350)
 
     #answer should be 16 + 1 for black border
-    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 32, 96)
+    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 35, 96)
 
     # display rune alphabet
     y = 4
@@ -868,94 +1043,6 @@ def player_move_or_attack(dx, dy):
 
 ### CONTROLS ##################################################################
 
-def getDirection():
-    global key
-    waiting = True
-    while waiting:
-        message('Choose a direction for this ray: ', libtcod.light_gray)
-        key = libtcod.console_wait_for_keypress(True)
-        key = libtcod.console_wait_for_keypress(True)
-        print key.vk
-        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
-            return [0, -1]
-        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
-            return [0, 1]
-        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
-            return [-1, 0]
-        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
-            return [1, 0]
-        #diagonals
-        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
-            return [1, -1]
-        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
-            return [1, 1]
-        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
-            return [-1, -1]
-        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
-            return [-1, 1]
-
-        # cancel
-        elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
-            return [2,2]
-
-def chooseTile(start):
-    global fov_recompute
-    global fov_map
-    global map
-    x = start[0]
-    y = start[1]
-    message("Select your target tile, then press Enter.", libtcod.light_gray)
-
-    flashTile(x, y)
-    fov_recompute = True
-    render_all()
-    libtcod.console_flush()
-
-    selected = False
-    while selected == False:
-        key = libtcod.console_wait_for_keypress(True)
-        key = libtcod.console_wait_for_keypress(True)
-
-        if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
-            if libtcod.map_is_in_fov(fov_map, x, y-1):
-                y -= 1
-        elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
-            if libtcod.map_is_in_fov(fov_map, x, y+1):
-                y += 1
-        elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
-            if libtcod.map_is_in_fov(fov_map, x-1, y):
-                x -= 1
-        elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
-            if libtcod.map_is_in_fov(fov_map, x+1, y):
-                x += 1
-        #diagonals
-        elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
-            if libtcod.map_is_in_fov(fov_map, x+1, y-1):
-                x += 1
-                y -= 1
-        elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
-            if libtcod.map_is_in_fov(fov_map, x+1, y+1):
-                x += 1
-                y += 1
-        elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
-            if libtcod.map_is_in_fov(fov_map, x-1, y-1):
-                x -= 1
-                y -= 1
-        elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
-                if libtcod.map_is_in_fov(fov_map, x-1, y+1):
-                    x -= 1
-                    y += 1
-        elif key.vk == libtcod.KEY_ENTER:
-            selected = True
-
-        flashTile(x, y)
-        fov_recompute = True
-        print 'rendering'
-        render_all()
-        libtcod.console_flush()
-        print x,y
-
-    return (x, y)
 
 
 def handle_keys():
@@ -1033,23 +1120,26 @@ def handle_keys():
 
             if key_char == "t":
                 #test line zap
-                lineDirection = getDirection()
-                print 'player is on tile %s %s' % (player.x, player.y)
-                lineShape([player.x, player.y], lineDirection, action = "access")
 
+                print 'player is on tile %s %s' % (player.x, player.y)
+                lineShape([player.x, player.y], "access", 10)
                 fov_recompute = True
                 render_all()
 
             if key_char == "a":
-                areaShape([player.x, player.y], "block",20)
+                areaShape([player.x, player.y], "block", 20)
                 fov_recompute = True
                 render_all()
 
             if key_char == "s":
-                targetOther([player.x, player.y], "block",20)
+                targetOther([player.x, player.y], "block", 20)
                 fov_recompute = True
                 render_all()
 
+            if key_char == "g":
+                targetAll([player.x, player.y], "damage", 25)
+                fov_recompute = True
+                render_all()
 
             return 'no-turn-taken'
 
@@ -1176,9 +1266,9 @@ def render_bar(x, y, total_width, name, value, maximum, bar_color, back_color):
         name + ': ' + str(value) + '/' + str(maximum))
 
 def menu(header, options, width):
-    img = libtcod.image_load('bff1.png')
-    libtcod.image_blit_2x(img, 0, 0, 0)
-    message("blitted image", libtcod.gray)
+    #img = libtcod.image_load('bff1.png')
+    #libtcod.image_blit_2x(img, 0, 0, 0)
+    #message("blitted image", libtcod.gray)
 
     if len(options) > INVENTORY_LIMIT: raise ValueError('Cannot have a menu with more than ' + str(INVENTORY_LIMIT) + ' options.')
 
@@ -1262,7 +1352,7 @@ game_msgs = []
 
 #create player object
 fighter_component = Fighter(hp = 30, defense = 2, power = 5, death_function = player_death)
-player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "You", img = "kuvat\\portrait2.png")
+player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "You", img = "kuvat\\portrait7.png")
 
 #list of objects, starting with player
 objects = [player]
@@ -1286,6 +1376,7 @@ key = libtcod.Key()
 
 ### LOOP ###
 message("Shit Crimson", libtcod.dark_crimson)
+winsound.PlaySound("hicRhodus.wav", winsound.SND_ALIAS|winsound.SND_LOOP|winsound.SND_ASYNC)
 libtcod.sys_set_fps(LIMIT_FPS)
 while not libtcod.console_is_window_closed():
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="719" />
+    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="894" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a99d6129-0f80-4083-8286-c3bf9b16b82c" name="Default" comment="" />
@@ -29,19 +29,30 @@
       <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="978" column="39" selection-start="32279" selection-end="32279" vertical-scroll-proportion="0.7224719" vertical-offset="13187" max-vertical-offset="18195">
+            <state line="1354" column="137" selection-start="45363" selection-end="45363" vertical-scroll-proportion="0.49438202" vertical-offset="17470" max-vertical-offset="18765">
               <folding>
-                <element signature="e#3547#4154#0" expanded="false" />
-                <element signature="e#6725#7220#0" expanded="false" />
-                <element signature="e#7378#7518#0" expanded="false" />
-                <element signature="e#8409#8725#0" expanded="false" />
-                <element signature="e#36144#36459#0" expanded="false" />
-                <element signature="e#37852#38246#0" expanded="false" />
-                <element signature="e#40683#41016#0" expanded="false" />
-                <element signature="e#41046#41408#0" expanded="false" />
-                <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-                <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+                <element signature="e#498#507#0" expanded="true" />
+                <element signature="e#3564#4171#0" expanded="false" />
+                <element signature="e#6742#7237#0" expanded="false" />
+                <element signature="e#7395#7535#0" expanded="false" />
+                <element signature="e#8426#8742#0" expanded="false" />
+                <element signature="e#26867#28843#0" expanded="false" />
+                <element signature="e#39054#39369#0" expanded="false" />
+                <element signature="e#40762#41156#0" expanded="false" />
+                <element signature="e#43596#43929#0" expanded="false" />
+                <element signature="e#43959#44321#0" expanded="false" />
+                <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+                <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="musicConverter.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/musicConverter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,6 +80,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/Vallat.py" />
+        <option value="$PROJECT_DIR$/musicConverter" />
+        <option value="$PROJECT_DIR$/musicConverter.py" />
         <option value="$PROJECT_DIR$/ShitCrimson.py" />
       </list>
     </option>
@@ -125,7 +138,8 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/musicConverter.py" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -169,6 +183,42 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ShitCrimson" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Vallat.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="musicConverter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ShitCrimson" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/musicConverter" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="musicConverter (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ShitCrimson" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/musicConverter.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -295,14 +345,18 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.ShitCrimson" />
       <item index="1" class="java.lang.String" itemvalue="Python.Vallat" />
+      <item index="2" class="java.lang.String" itemvalue="Python.musicConverter" />
+      <item index="3" class="java.lang.String" itemvalue="Python.musicConverter (1)" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.ShitCrimson" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Vallat" />
+        <item index="1" class="java.lang.String" itemvalue="Python.musicConverter (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.musicConverter" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Vallat" />
       </list>
     </recent_temporary>
   </component>
@@ -364,7 +418,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31050768" sideWeight="0.1950448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="1388" y="121" width="518" height="827" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="499" y="98" width="1290" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="802" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -386,7 +440,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -394,16 +448,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="491" column="33" selection-start="15752" selection-end="15752" vertical-scroll-proportion="0.0" vertical-offset="7305" max-vertical-offset="15180">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -419,16 +475,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="512" column="0" selection-start="16325" selection-end="16325" vertical-scroll-proportion="0.0" vertical-offset="7620" max-vertical-offset="15165">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -444,16 +502,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="273" column="0" selection-start="8073" selection-end="8073" vertical-scroll-proportion="0.0" vertical-offset="4080" max-vertical-offset="14910">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -469,16 +529,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="772" column="0" selection-start="25681" selection-end="25681" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -494,16 +556,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="791" column="37" selection-start="26669" selection-end="26669" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11400">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -519,16 +583,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="9570">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -547,20 +613,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/musicConverter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="978" column="39" selection-start="32279" selection-end="32279" vertical-scroll-proportion="0.7224719" vertical-offset="13187" max-vertical-offset="18195">
+        <state line="1354" column="137" selection-start="45363" selection-end="45363" vertical-scroll-proportion="0.49438202" vertical-offset="17470" max-vertical-offset="18765">
           <folding>
-            <element signature="e#3547#4154#0" expanded="false" />
-            <element signature="e#6725#7220#0" expanded="false" />
-            <element signature="e#7378#7518#0" expanded="false" />
-            <element signature="e#8409#8725#0" expanded="false" />
-            <element signature="e#36144#36459#0" expanded="false" />
-            <element signature="e#37852#38246#0" expanded="false" />
-            <element signature="e#40683#41016#0" expanded="false" />
-            <element signature="e#41046#41408#0" expanded="false" />
-            <marker date="1394934177381" expanded="true" signature="2017:2766" placeholder="..." />
-            <marker date="1394934177381" expanded="true" signature="9819:14934" placeholder="..." />
+            <element signature="e#498#507#0" expanded="true" />
+            <element signature="e#3564#4171#0" expanded="false" />
+            <element signature="e#6742#7237#0" expanded="false" />
+            <element signature="e#7395#7535#0" expanded="false" />
+            <element signature="e#8426#8742#0" expanded="false" />
+            <element signature="e#26867#28843#0" expanded="false" />
+            <element signature="e#39054#39369#0" expanded="false" />
+            <element signature="e#40762#41156#0" expanded="false" />
+            <element signature="e#43596#43929#0" expanded="false" />
+            <element signature="e#43959#44321#0" expanded="false" />
+            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
+            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
           </folding>
         </state>
       </provider>
