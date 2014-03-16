@@ -90,6 +90,8 @@ def readCSVtoArray(filePath):
 
     with open(filePath, 'rb') as source:
         for line in source:
+            line = line.replace('"', '')
+           #line = replace(line, )
             outputArray.append(line[:-2])
     return outputArray
 
@@ -103,6 +105,13 @@ esineet = readCSVtoArray("sanat\\esineet.csv")
 muotovajaat = readCSVtoArray("sanat\\muodoton.csv")
 sisusvajaat = readCSVtoArray("sanat\\lihaton.csv")
 voimavajaat = readCSVtoArray("sanat\\voimaton.csv")
+
+itse = readCSVtoArray("sanat\\itse.csv")
+
+muistot = readCSVtoArray("sanat\\muistot.csv")
+kaunat = readCSVtoArray("sanat\\kaunat.csv")
+hajut = readCSVtoArray("sanat\\hajut.csv")
+kivut = readCSVtoArray("sanat\\kivut.csv")
 
 #print toimiVallat
 #print ilkiVallat
@@ -151,6 +160,7 @@ class Object:
             self.item.owner = self
 
         self.description = setDescription(name)
+        self.img = setImage(name)
 
     def move_towards(self, target_x, target_y):
         # get the distance and vector from self to target
@@ -239,12 +249,13 @@ class Rect:
 
 class Fighter:
     #combat-related properties and methods (monster, player, NPC)
-    def __init__(self, hp, defense, power, death_function = None):
+    def __init__(self, hp, defense, power, death_function = None, name=""):
         self.max_hp = hp
         self.hp = hp
         self.defense = defense
         self.power = power
         self.death_function = death_function
+        self.name = name
 
     def take_damage(self, damage):
         if damage > 0:
@@ -257,8 +268,14 @@ class Fighter:
 
     def attack(self, target):
         damage = self.power - target.fighter.defense
+        if self.name == "You":
+            attacks = ["grin at the", "plead mercy from the", "embrace the", "kneel before the", "grow tearful at the", "explain your actions to the", "shore your memories against the", "amass some strength against the", "ask for forgiveness from the"]
+            msgColor = libtcod.azure
+        else:
+            attacks = ["punishes", "seeps into", "compels", "diminishes", "empties itself towards", "weakens", "accuses", "billows at"]
+            msgColor = libtcod.desaturated_red
         if damage > 0:
-            print self.owner.name.capitalize() + ' attacks ' + target.name + ' for ' + str(damage) + ' points.'
+            message(self.owner.name.capitalize() + " " + attacks[libtcod.random_get_int(0, 0, len(attacks)-1)] + " " + target.name.lower() + ' (' + str(damage) + ' points).', msgColor)
             target.fighter.take_damage(damage)
         else:
             print 'No damage'
@@ -268,11 +285,10 @@ class Fighter:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
-
 def player_death(player):
     #game over
     global game_state
-    print 'It is all over.'
+    message('It is all over.', libtcod.brass)
     game_state = 'dead'
 
     player.char = '%'
@@ -280,7 +296,9 @@ def player_death(player):
 
 def monster_death(monster):
     #transform monster to a corpse
-    print monster.name.capitalize() + ' has died!'
+    deaths = [" withers away.", " no longer feels alien to you.", " has found its place.", " is clear to you."]
+    roll = libtcod.random_get_int(0, 0, len(deaths)-1)
+    message(monster.name.capitalize() + deaths[roll], libtcod.light_gray)
     monster.send_to_back() #draw this object first
     monster.char = '%'
     monster.color = libtcod.dark_red
@@ -311,10 +329,44 @@ class BasicMonster:
 #                                                                     FUNCTIONS
 
 def setDescription(name):
-    name = 1
-    # Build how descriptions are set for objects here
-    roll = libtcod.random_get_int(0, 0, len(esineet)-1)
-    return esineet[roll]
+    description = ""
+    if name == "You":
+        # Build how descriptions are set for objects here
+        roll = libtcod.random_get_int(0, 0, len(itse)-1)
+        description = itse[roll]
+    elif name == "Pain":
+        roll = libtcod.random_get_int(0, 0, len(kivut)-1)
+    elif name == "Memory":
+        roll = libtcod.random_get_int(0, 0, len(muistot)-1)
+    elif name == "Vapour":
+        roll = libtcod.random_get_int(0, 0, len(hajut)-1)
+    elif name == "Regret":
+        roll = libtcod.random_get_int(0, 0, len(kaunat)-1)
+    else:
+        roll = libtcod.random_get_int(0, 0, len(esineet)-1)
+        description = esineet[roll]
+
+    return description
+
+def setImage(name):
+    img = None
+    if name == "You":
+        img = "kuvat\\portrait2.png"
+    elif name == "Pain":
+        img = "kuvat\\portrait1.png"
+    elif name == "Memory":
+        img = "kuvat\\portrait3.png"
+    elif name == "Vapour":
+        img = "kuvat\\portrait4.png"
+    elif name == "Regret":
+        img = "kuvat\\portrait4.png"
+    elif name == "Memento":
+        img = "kuvat\\portrait7.png"
+    elif name == "Bucket":
+        img = "kuvat\\bucket3.png"
+    #elif name == "Scenery":
+    #    img = "kuvat\\scenery.png"
+    return img
 
 ### WORLD GENERATION ##########################################################
 def create_room(room):
@@ -339,21 +391,26 @@ def create_v_tunnel(y1, y2, x):
 
 def create_monster(x, y):
     roll = libtcod.random_get_int(0, 0, 100)
-    if roll < 70: # chance of getting a smell
-        fighter_component = Fighter(hp = 10, defense=0, power=3, death_function=monster_death)
+    if roll < 30: # chance of getting a vapour
+        fighter_component = Fighter(hp = 10, defense=0, power=3, death_function=monster_death, name="The vapour")
         ai_component = BasicMonster()
-        monster = Object(x, y, 's', 'Smell', libtcod.red, blocks = True, fighter=fighter_component, ai = ai_component)
+        monster = Object(x, y, 'v', 'Vapour', libtcod.light_green, blocks = True, fighter=fighter_component, ai = ai_component)
 
-    elif roll < 70 + 20:
-        fighter_component = Fighter(hp = 15, defense=1, power=5, death_function=monster_death)
+    elif roll < 30 + 30:
+        fighter_component = Fighter(hp = 15, defense=1, power=4, death_function=monster_death, name="The pain")
         ai_component = BasicMonster()
-        monster = Object(x, y, 'p', 'Pain', libtcod.orange, blocks=True, fighter = fighter_component, ai = ai_component)
+        monster = Object(x, y, 'p', 'Pain', libtcod.lighter_purple, blocks=True, fighter = fighter_component, ai = ai_component)
+
+    elif roll < 30 + 30 + 30:
+        fighter_component = Fighter(hp = 20, defense=1, power=5, death_function=monster_death, name="The regret")
+        ai_component = BasicMonster()
+        monster = Object(x, y, 'r', 'Regret', libtcod.lighter_chartreuse, blocks=True, fighter = fighter_component, ai = ai_component)
 
     else:
         # memory
-        fighter_component = Fighter(hp = 20, defense=2, power=5, death_function = monster_death)
+        fighter_component = Fighter(hp = 25, defense=2, power=6, death_function = monster_death, name="The memory")
         ai_component = BasicMonster()
-        monster = Object(x, y, 'M', 'Memory', libtcod.dark_pink, blocks = True, fighter=fighter_component,ai = ai_component)
+        monster = Object(x, y, 'm', 'Memory', libtcod.dark_pink, blocks = True, fighter=fighter_component,ai = ai_component)
 
     objects.append(monster)
 
@@ -482,8 +539,8 @@ def lineShape(start, action, power):
         x = start[0]
         y = start[1]
         rangeCounter = 10
-
         blocked = False
+
         while blocked == False:
             if x == 0 and y == 0:
                 blocked = True
@@ -674,7 +731,6 @@ def areaShape(start, action, power):
                                     message ("Convulsions unmoor your innards.", libtcod.brass)
 
 
-
             except:
                 print 'Tile %s, %s is out of bounds.' % (x, y)
     # Since the contours of the map have changed, we need to recreate the FOV
@@ -719,7 +775,13 @@ def targetOther(start, action, power):
         map[x][y].block_sight = False
 
 def targetNearest(start, action, power):
-    a = 1
+    for object in objects:
+        if object.fighter and not object == player:
+            #calculate dist between object and player
+            dist = player.distance(object)
+            if dist < closest_dist: # keep track of the closest one so far
+                closest_enemy = objectclosest_dist
+        return closest_enemy
 
 def targetSelf(start, action, power):
     x = start[0]
@@ -804,7 +866,7 @@ def getDirection():
     global key
     waiting = True
     while waiting:
-        message('Choose a direction for this ray: ', libtcod.light_gray)
+        message('Choose a direction: ', libtcod.light_gray)
         key = libtcod.console_wait_for_keypress(True)
         key = libtcod.console_wait_for_keypress(True)
         print key.vk
@@ -969,6 +1031,35 @@ def render_all():
     libtcod.console_set_default_foreground(panel, libtcod.light_gray)
     libtcod.console_print_ex(panel, 1, 0, libtcod.BKGND_NONE, libtcod.LEFT, get_names_under_mouse())
 
+    # Print the vowel map
+    vowelMap = ["You remember knowing",
+                "                    ",
+                "words of power. Ones",
+                "                    ",
+                "to make your house &",
+                "                    ",
+                "mind obey. Vowels to",
+                "                    ",
+                "grant form & content",
+                "                    ",
+                "& consonants setting",
+                "                    ",
+                "the amount of power.",
+                "                    ",
+                "                    ",
+                "          a         ",
+                "                    ",
+                "     e         i    ",
+                "          y         ",
+                "                    ",
+                "       o     u      "
+    ]
+    y = 1
+    for line in vowelMap:
+        libtcod.console_set_default_foreground(con, libtcod.brass)
+        libtcod.console_print_ex(con, SCREEN_WIDTH - 25, 40+y, libtcod.BKGND_NONE, libtcod.LEFT, line)
+        y += 1
+
     # Print the description lines
     # Randomise the description display point slightly
     dCount -= 1
@@ -987,7 +1078,7 @@ def render_all():
     # image natural size is 96 x 96
     # image, panel, x corner on panel, y corner on panel,
     # Xth pixel of image to start from, Yth pixel of image to start from width, height
-    buffer = 20
+    buffer = 22
     imgPath = str(get_image_under_mouse())
     img = libtcod.image_load(imgPath)
     #img = libtcod.image_load('kuvat\\portrait1.png')/
@@ -997,7 +1088,7 @@ def render_all():
         dCount = libtcod.random_get_int(0, 250, 350)
 
     #answer should be 16 + 1 for black border
-    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 35, 96)
+    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 35, 75)
 
     # display rune alphabet
     y = 4
@@ -1102,8 +1193,40 @@ def handle_keys():
                 runeResult = Vallat.castRunes(runes)
                 print runeResult
                 if runeResult[3] == 0:
-                    #cast spell
-                    x = 1
+                    message("You remember a word.", libtcod.light_gray)
+                    # able to cast spell
+                    # what shape is it?
+                    power = runeResult[0]
+                    shape = runeResult[1]
+                    content = runeResult[2]
+
+                    print shape, content, power
+
+                    if shape == "area":
+                        message("This word will take shape over an area.", libtcod.light_gray)
+                        areaShape([player.x, player.y], content, power)
+
+                    if shape == "line":
+                        message("This word wants to travel straight and far.", libtcod.light_gray)
+                        lineShape([player.x, player.y], content, power)
+
+                    if shape == "self":
+                        message("This word etches itself onto your skin.", libtcod.light_gray)
+                        targetSelf([player.x, player.y], content, power)
+
+                    if shape == "other":
+                        message("This word will latch onto something living.", libtcod.light_gray)
+                        targetOther([player.x, player.y], content, power)
+
+                    if shape == "everything":
+                        message("This word wants to touch everything.", libtcod.light_gray)
+                        targetAll([player.x, player.y], content, power)
+
+                    if shape == "nearest":
+                        message("This word wants to touch something nearby.")
+                        targetNearest([player.x, player.y], content, power)
+
+
                 elif runeResult[3] == 1:
                     # formless
                     castingOutcome = muotovajaat[ libtcod.random_get_int(0, 0, len(muotovajaat)-1)]
@@ -1351,8 +1474,10 @@ panel = libtcod.console_new(SCREEN_WIDTH, PANEL_HEIGHT)
 game_msgs = []
 
 #create player object
-fighter_component = Fighter(hp = 30, defense = 2, power = 5, death_function = player_death)
-player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "You", img = "kuvat\\portrait7.png")
+fighter_component = Fighter(hp = 30, defense = 2, power = 5, death_function = player_death, name="You")
+r = libtcod.random_get_int(0, 0, len(itse)-1)
+
+player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "", img = "kuvat\\portrait2.png")
 
 #list of objects, starting with player
 objects = [player]
@@ -1376,6 +1501,7 @@ key = libtcod.Key()
 
 ### LOOP ###
 message("Shit Crimson", libtcod.dark_crimson)
+message("You wake up next to a bloody bucket.", libtcod.light_gray)
 winsound.PlaySound("hicRhodus.wav", winsound.SND_ALIAS|winsound.SND_LOOP|winsound.SND_ASYNC)
 libtcod.sys_set_fps(LIMIT_FPS)
 while not libtcod.console_is_window_closed():

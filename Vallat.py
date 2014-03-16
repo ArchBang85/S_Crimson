@@ -69,22 +69,22 @@ consonants = "bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ"
 
 runeForms =     \
                 {
-                    'a' : 1,
-                    'e' : 2,
-                    'i' : 3,
-                    'o' : 4,
-                    'u' : 5,
-                    'y' : 6
+                    'a' : "area",
+                    'e' : "everything",
+                    'i' : "line",
+                    'o' : "nearest",
+                    'u' : "other",
+                    'y' : "self"
                 }
 
 runeContents =  \
                 {
-                    'a' : 1,
-                    'e' : 2,
-                    'i' : 3,
-                    'o' : 4,
-                    'u' : 5,
-                    'y' : 6
+                    'a' : "damage",
+                    'e' : "heal",
+                    'i' : "access",
+                    'o' : "block",
+                    'u' : "damage",
+                    'y' : "heal"
                 }
 
 def spellPower(runes):

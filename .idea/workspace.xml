@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="894" />
+    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="956" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a99d6129-0f80-4083-8286-c3bf9b16b82c" name="Default" comment="" />
@@ -29,20 +29,11 @@
       <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1354" column="137" selection-start="45363" selection-end="45363" vertical-scroll-proportion="0.49438202" vertical-offset="17470" max-vertical-offset="18765">
+            <state line="1088" column="0" selection-start="37111" selection-end="37111" vertical-scroll-proportion="0.7547893" vertical-offset="15729" max-vertical-offset="23055">
               <folding>
                 <element signature="e#498#507#0" expanded="true" />
-                <element signature="e#3564#4171#0" expanded="false" />
-                <element signature="e#6742#7237#0" expanded="false" />
-                <element signature="e#7395#7535#0" expanded="false" />
-                <element signature="e#8426#8742#0" expanded="false" />
-                <element signature="e#26867#28843#0" expanded="false" />
-                <element signature="e#39054#39369#0" expanded="false" />
-                <element signature="e#40762#41156#0" expanded="false" />
-                <element signature="e#43596#43929#0" expanded="false" />
-                <element signature="e#43959#44321#0" expanded="false" />
-                <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-                <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+                <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+                <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -60,7 +51,7 @@
       <file leaf-file-name="Vallat.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vallat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="2730" selection-end="2730" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2700">
+            <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="2700">
               <folding />
             </state>
           </provider>
@@ -79,18 +70,18 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Vallat.py" />
         <option value="$PROJECT_DIR$/musicConverter" />
         <option value="$PROJECT_DIR$/musicConverter.py" />
+        <option value="$PROJECT_DIR$/Vallat.py" />
         <option value="$PROJECT_DIR$/ShitCrimson.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="height" value="1002" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -137,12 +128,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/musicConverter.py" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -407,7 +398,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1002" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -418,7 +409,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31050768" sideWeight="0.1950448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="499" y="98" width="1290" height="827" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="2400" y="98" width="611" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="802" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -440,26 +431,24 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Vallat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="0" selection-start="2730" selection-end="2730" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="491" column="33" selection-start="15752" selection-end="15752" vertical-scroll-proportion="0.0" vertical-offset="7305" max-vertical-offset="15180">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -476,17 +465,8 @@
         <state line="512" column="0" selection-start="16325" selection-end="16325" vertical-scroll-proportion="0.0" vertical-offset="7620" max-vertical-offset="15165">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -503,17 +483,8 @@
         <state line="273" column="0" selection-start="8073" selection-end="8073" vertical-scroll-proportion="0.0" vertical-offset="4080" max-vertical-offset="14910">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -530,17 +501,8 @@
         <state line="772" column="0" selection-start="25681" selection-end="25681" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -557,17 +519,8 @@
         <state line="791" column="37" selection-start="26669" selection-end="26669" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11400">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -584,17 +537,8 @@
         <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="9570">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -606,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vallat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="2730" selection-end="2730" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/musicConverter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
@@ -620,22 +557,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Vallat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1354" column="137" selection-start="45363" selection-end="45363" vertical-scroll-proportion="0.49438202" vertical-offset="17470" max-vertical-offset="18765">
+        <state line="1088" column="0" selection-start="37111" selection-end="37111" vertical-scroll-proportion="0.7547893" vertical-offset="15729" max-vertical-offset="23055">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <element signature="e#3564#4171#0" expanded="false" />
-            <element signature="e#6742#7237#0" expanded="false" />
-            <element signature="e#7395#7535#0" expanded="false" />
-            <element signature="e#8426#8742#0" expanded="false" />
-            <element signature="e#26867#28843#0" expanded="false" />
-            <element signature="e#39054#39369#0" expanded="false" />
-            <element signature="e#40762#41156#0" expanded="false" />
-            <element signature="e#43596#43929#0" expanded="false" />
-            <element signature="e#43959#44321#0" expanded="false" />
-            <marker date="1394943624576" expanded="true" signature="2034:2783" placeholder="..." />
-            <marker date="1394943624576" expanded="true" signature="9836:14945" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
+            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
           </folding>
         </state>
       </provider>
