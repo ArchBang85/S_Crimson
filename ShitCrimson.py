@@ -19,7 +19,7 @@ import textwrap
 import Vallat
 import winsound
 
-
+forget = False
 
 #size of window
 SCREEN_WIDTH = 130
@@ -29,7 +29,7 @@ ROOM_MAX_SIZE = 14
 ROOM_MIN_SIZE = 6
 MAX_ROOMS = 35
 MAX_ROOM_MONSTERS = 3
-MAX_ROOM_ITEMS = 2
+MAX_ROOM_ITEMS = 3
 
 #size of map
 MAP_WIDTH = 100
@@ -53,11 +53,11 @@ TORCH_RADIUS = 20 #ever x turns diminish torch
 TORCH_COUNTER = 0
 
 # Inventory settings
-INVENTORY_LIMIT = 26
+INVENTORY_LIMIT = 30
 INVENTORY_WIDTH = 50
 
 # Item stats
-HEAL_AMOUNT = 4 # how much a potion heals by
+HEAL_AMOUNT = 5 # how much a potion heals by
 LIGHTNING_RANGE = 5
 LIGHTNING_DAMAGE = 20
 
@@ -69,17 +69,24 @@ else:
     color_dark_wall = libtcod.Color(120, 150, 130) # dark green
     color_light_wall = libtcod.Color(200, 220, 180) # lighter green
 
-color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
+c_roll = libtcod.random_get_int(0, 0, 2)
+
+if c_roll == 1:
+    color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
+else:
+    color_dark_ground = libtcod.Color(90, 20, 20)
+
 color_light_ground = libtcod.Color(100, 85, 75) # light brown
 
-highlight_color = libtcod.Color(220, 140, 175) # pale pink
+
+highlight_color = libtcod.Color(220, 140, libtcod.random_get_int(0, 150, 220)) # pale pink
 
 # counters
 
 # jitters
 #description move counter
 dCount = 250
-descriptionX = SCREEN_WIDTH - 36
+descriptionX = SCREEN_WIDTH - 37
 descriptionY = 0
 
 # initial image coordinates (only a sliver of the portraits are shown at any given time)
@@ -88,6 +95,8 @@ imgY = libtcod.random_get_int(0, 0, 32)
 
 ailmentCounter = libtcod.random_get_int(0, 80, 222)
 
+SOUNDS = True
+SCounter = 10
 
 ###############################################################################
 #                                                                         WORDS
@@ -297,7 +306,7 @@ class Fighter:
 def ailment(player):
     global ailmentCounter
 
-    ailments = ["The disease gnaws within.", "Clusterings of pain cosset you.", "A sudden pain makes you hack and cough.", "A bolt of pain runs down your body."]
+    ailments = ["The disease gnaws within.", "Clusters of pain cosset you.", "A sudden pain makes you hack and cough.", "A bolt of pain runs down your body."]
 
     ailmentCounter -= 1
     if ailmentCounter < 0:
@@ -339,7 +348,15 @@ class BasicMonster:
 
             #Move towards player if far away (if feeling up to the task?)
             if monster.distance_to(player) >= 2:
-                monster.move_towards(player.x, player.y)
+                roll = libtcod.random_get_int(0, 0, 10)
+                if roll < 9:
+                    monster.move_towards(player.x, player.y)
+                else:
+                    potential_move_x = monster.x + libtcod.random_get_int(0, -1, 2)
+                    potential_move_y = monster.y + libtcod.random_get_int(0, -1, 2)
+                    if not (monster.x == potential_move_x and monster.y == potential_move_y):
+                        monster.move_towards(potential_move_x, potential_move_y)
+
 
             #Attack when close by
             elif player.fighter.hp > 0:
@@ -357,12 +374,18 @@ def setDescription(name):
         description = itse[roll]
     elif name == "Pain":
         roll = libtcod.random_get_int(0, 0, len(kivut)-1)
+        description = kivut[roll]
     elif name == "Memory":
         roll = libtcod.random_get_int(0, 0, len(muistot)-1)
+        description = muistot[roll]
     elif name == "Vapour":
         roll = libtcod.random_get_int(0, 0, len(hajut)-1)
+        description = hajut[roll]
     elif name == "Regret":
         roll = libtcod.random_get_int(0, 0, len(kaunat)-1)
+        description = kaunat[roll]
+    elif name == "Bucket":
+        description = "A bucket of what was once in you. But the disease is still in there."
     else:
         roll = libtcod.random_get_int(0, 0, len(esineet)-1)
         description = esineet[roll]
@@ -374,19 +397,24 @@ def setImage(name):
     if name == "You":
         img = "kuvat\\portrait2.png"
     elif name == "Pain":
-        img = "kuvat\\portrait1.png"
+        roll = libtcod.random_get_int(0, 0, 2)
+        if roll == 1:
+            img = "kuvat\\portrait1.png"
+        else:
+            img = "kuvat\\portrait5.png"
     elif name == "Memory":
         img = "kuvat\\portrait3.png"
     elif name == "Vapour":
         img = "kuvat\\portrait4.png"
     elif name == "Regret":
-        img = "kuvat\\portrait4.png"
+        img = "kuvat\\portrait6.png"
     elif name == "Memento":
         img = "kuvat\\portrait7.png"
     elif name == "Bucket":
         img = "kuvat\\bucket3.png"
-    #elif name == "Scenery":
-    #    img = "kuvat\\scenery.png"
+    else:
+        img = "kuvat\\portrait7.png"
+
     return img
 
 ### WORLD GENERATION ##########################################################
@@ -441,13 +469,13 @@ def create_item(x, y):
 
     if roll < 20:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '!', 'soothing object', libtcod.violet, item = item_component)
+        item = Object(x, y, '?', 'A beloved book', libtcod.violet, item = item_component)
     elif roll < 40:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '[', 'happy memento', libtcod.lightest_sepia, item = item_component)
+        item = Object(x, y, '*', 'Memento', libtcod.lightest_sepia, item = item_component)
     else:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, ']', 'a familiar trinket', libtcod.lighter_yellow, item = item_component)
+        item = Object(x, y, '&', 'A familiar trinket', libtcod.lighter_yellow, item = item_component)
     objects.append(item)
     item.send_to_back()
 
@@ -521,6 +549,8 @@ def make_map():
             if num_rooms == 0:
                 player.x = new_x
                 player.y = new_y
+                bucket.x = new_x + 1
+                bucket.y = new_y - 1
             else:
                 #all rooms after the first:
                 #connect to the previous room with a tunnel
@@ -551,11 +581,12 @@ def validDirection(direction):
 
 def lineShape(start, action, power):
     global map
+    global fov_map
     # the action should be
     # valid directions = [-1, 0], [1, 0], [-1, -1], [-1, 1], [-1, -1], [0, 1], [0, -1], [1, -1]
+    message("Choose direction: ",libtcod.white)
     direction = getDirection()
     if validDirection(direction):
-
 
         x = start[0]
         y = start[1]
@@ -596,7 +627,7 @@ def lineShape(start, action, power):
                 #activeTile.block_sight = True
                 for object in objects:
                     if object.fighter and object.fighter.hp > 0 and object.x == x and object.y == y:
-                        object.fighter.take_damage(4)
+                        object.fighter.take_damage(power)
 
                        # print object.fighter.hp
 
@@ -891,12 +922,16 @@ def targetAll(start, action, power):
 
 def getDirection():
     global key
+    fov_recompute = True
+    render_all()
+    libtcod.console_flush()
     waiting = True
     while waiting:
-        message('Choose a direction: ', libtcod.light_gray)
+        #message('Choose a direction: ', libtcod.light_gray)
         key = libtcod.console_wait_for_keypress(True)
         key = libtcod.console_wait_for_keypress(True)
-        print key.vk
+
+        #print key.vk
         if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
             return [0, -1]
         elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
@@ -918,6 +953,7 @@ def getDirection():
         # cancel
         elif key.vk == libtcod.KEY_ESCAPE or key.vk == libtcod.KEY_CONTROL and key.vk == libtcod.KEY_CHAR('c'):
             return [2,2]
+
 
 def chooseTile(start):
     global fov_recompute
@@ -1080,6 +1116,7 @@ def render_all():
                 "          y         ",
                 "                    ",
                 "       o     u      "
+
     ]
     y = 1
     for line in vowelMap:
@@ -1094,7 +1131,7 @@ def render_all():
     # Randomise the description display point slightly
     dCount -= 1
     if dCount < 0:
-        descriptionX = SCREEN_WIDTH - 40 + libtcod.random_get_int(0, 0, 2)
+        descriptionX = SCREEN_WIDTH - 40 + libtcod.random_get_int(0, -1, 1)
         descriptionY = libtcod.random_get_int(0, 0, 2)
 
     y = 1
@@ -1205,7 +1242,7 @@ def handle_keys():
             key_char = chr(key.c)
 
             if key_char == '?':
-                print 'question'
+                information_menu("Scraps from your memory:\n")
 
             if key_char == 'g':
                 #pick item up
@@ -1221,12 +1258,26 @@ def handle_keys():
                     active_item.use()
                     message('Used item.', libtcod.light_crimson)
 
+            if key_char == 's':
+                # toggle sound
+                global SOUNDS
+                global SCounter
+                if(SOUNDS):
+                    winsound.PlaySound(None, winsound.SND_PURGE|winsound.SND_ASYNC)
+                    #winsound.PlaySound("hicRhodus.wav", winsound.SND_ASYNC|winsound.SND_PURGE)
+                    SOUNDS = False
+                    SCounter = 10
+                elif SCounter < 0:
+                    winsound.PlaySound("hicRhodus.wav", winsound.SND_ALIAS|winsound.SND_LOOP|winsound.SND_ASYNC)
+
             if key_char == 'c':
                 #choose runes
                 castingOutcome = ""
-                runes = enterRunes("Try and remember a word: \n")
+                runes = enterRunes("Try and remember what you can of words: \n")
                 runeResult = Vallat.castRunes(runes)
-                print runeResult
+
+
+                #print runeResult
                 if runeResult[3] == 0:
                     message("You remember a word.", libtcod.light_gray)
                     # able to cast spell
@@ -1235,7 +1286,9 @@ def handle_keys():
                     shape = runeResult[1]
                     content = runeResult[2]
 
-                    print shape, content, power
+                    #print shape, content, power
+
+                    message(toimiVallat[libtcod.random_get_int(0, 0, len(toimiVallat)-1)])
 
                     if shape == "area":
                         message("This word will take shape over an area.", libtcod.light_gray)
@@ -1243,6 +1296,8 @@ def handle_keys():
 
                     if shape == "line":
                         message("This word wants to travel straight and far.", libtcod.light_gray)
+                        fov_recompute = True
+                        render_all()
                         lineShape([player.x, player.y], content, power)
 
                     if shape == "self":
@@ -1275,6 +1330,8 @@ def handle_keys():
                     castingOutcome = voimavajaat[libtcod.random_get_int(0, 0, len(voimavajaat)-1)]
 
                 message(str(castingOutcome), libtcod.darker_azure)
+                fov_recompute = True
+                render_all()
 
             #Debug controls
             #if key_char == "t":
@@ -1285,10 +1342,10 @@ def handle_keys():
             #   fov_recompute = True
             #   render_all()
 
-            if key_char == "a":
-                areaShape([player.x, player.y], "access", 20)
-                fov_recompute = True
-                render_all()
+            #if key_char == "a":
+            #    areaShape([player.x, player.y], "access", 20)
+            #    fov_recompute = True
+            #    render_all()
 
             #if key_char == "s":
             #    targetOther([player.x, player.y], "block", 20)
@@ -1339,12 +1396,14 @@ def allowedLetters(letter):
 
 def message(new_msg, color = libtcod.white):
     #split message if needed
-
+    global forget
     new_msg_trim = ""
-    for a in new_msg:
-        new_msg_trim += allowedLetters(a)
-
-    new_msg_lines = textwrap.wrap(new_msg_trim, MSG_WIDTH)
+    if(forget):
+        for a in new_msg:
+            new_msg_trim += allowedLetters(a)
+        new_msg_lines = textwrap.wrap(new_msg_trim, MSG_WIDTH)
+    else:
+        new_msg_lines = textwrap.wrap(new_msg, MSG_WIDTH)
 
     for line in new_msg_lines:
         #when the buffer is full, pop out the top line
@@ -1489,17 +1548,45 @@ def inventory_menu(header):
     if index is None or len(inventory) == 0: return None
     return inventory[index].item
 
+def information_menu(header):
+
+    options = [" ", " ", "Attempt to form a word", " ", " ", " ", "Pick up objects", " ", "See your inventory", " ", " "," "," "," "," "," "," ", " ", "Make the sounds go away"]
+
+    menu(header, options, INVENTORY_WIDTH)
+
 def enterRunes(header):
     #show alphabet as options
     runes = ""
-    print Vallat.alphabet
+    #print Vallat.alphabet
+
+    abc = []
+    for a in Vallat.alphabet:
+        if a == "a":
+            abc.append("a | area       | harm")
+        elif a == "e":
+            abc.append("e | all        | heal")
+        elif a == "i":
+            abc.append("i | path       | open")
+        elif a == "o":
+            abc.append("o | near       | close")
+        elif a == "u":
+            abc.append("u | you        | hurt")
+        elif a == "y":
+            abc.append("y | i          | live")
+        else:
+            abc.append(a)
+
     i = 0
     while i < 4: # 4 is the spell length
-        index = menu(header + " \n" + runes+"\n", Vallat.alphabet, INVENTORY_WIDTH)
+        key = libtcod.console_wait_for_keypress(True)
+        index = menu(header + " \n" + runes + "\n", abc, INVENTORY_WIDTH)
         if index is not None:
             runes += Vallat.alphabet[index]
-        key = libtcod.console_wait_for_keypress(True)
         i += 1
+        if i == 4:
+            fov_recompute = True
+            render_all()
+            return runes
 
     return runes
 
@@ -1520,6 +1607,16 @@ def checkForEnd():
     else:
         return False
 
+def checkObjects():
+    units = 0
+    items = 0
+    for o in objects:
+        if o.fighter:
+            units += 1
+        else:
+            items += 1
+    print "Units: %s, Items: %s" % (units, items)
+
 
 ###############################################################################
 #                                                                     MAIN LOOP
@@ -1537,13 +1634,19 @@ game_msgs = []
 
 #create player object
 fighter_component = Fighter(hp = 30, defense = 2, power = 5, death_function = player_death, name="You")
-r = libtcod.random_get_int(0, 0, len(itse)-1)
 
 player = Object(0, 0, '@', 'You', libtcod.white, blocks = True, fighter = fighter_component, description = "", img = "kuvat\\portrait2.png")
 
+#create bucket
+r = libtcod.random_get_int(0, -1, 2)
+bucket = Object(player.x + r, player.y - 1, '#', 'Bucket', libtcod.darkest_red, blocks = False, fighter = None, description= "", img ="kuvat\\bucket3.png")
+
 #list of objects, starting with player
-objects = [player]
+objects = [player, bucket]
 inventory = []
+
+print player.x
+print bucket.x
 
 #generate map(not yet drawn)
 make_map()
@@ -1574,6 +1677,8 @@ while not libtcod.console_is_window_closed():
 
     libtcod.console_flush()
 
+    SCounter -= 1
+
     #erase all objects at their old locations, before they move
     for object in objects:
         object.clear()
@@ -1591,8 +1696,9 @@ while not libtcod.console_is_window_closed():
 
         # increment fov_range ticker
         torch_dimmer()
+        #checkObjects()
 
         if checkForEnd():
-            message('You have accepted yourself and die with a relief.')
+            message('Matay, you have accepted yourself and die unburdened.')
             game_state = 'end'
         ailment(player)

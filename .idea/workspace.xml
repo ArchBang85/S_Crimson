@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="983" />
+    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="1019" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a99d6129-0f80-4083-8286-c3bf9b16b82c" name="Default" comment="" />
@@ -29,11 +29,11 @@
       <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1591" column="32" selection-start="54182" selection-end="54182" vertical-scroll-proportion="29.702427" vertical-offset="608" max-vertical-offset="24045">
+            <state line="930" column="0" selection-start="30782" selection-end="30782" vertical-scroll-proportion="0.2575377" vertical-offset="13745" max-vertical-offset="25650">
               <folding>
                 <element signature="e#498#507#0" expanded="true" />
-                <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-                <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+                <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+                <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -51,7 +51,7 @@
       <file leaf-file-name="Vallat.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vallat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="24" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="2745">
+            <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="-22.24" vertical-offset="734" max-vertical-offset="2745">
               <folding />
             </state>
           </provider>
@@ -113,7 +113,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -124,7 +124,19 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ShitCrimson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -404,12 +416,12 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293979" sideWeight="0.15392725" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12177122" sideWeight="0.68949234" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15852335" sideWeight="0.6639629" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12177122" sideWeight="0.68949234" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15814444" sideWeight="0.6639629" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31050768" sideWeight="0.1950448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="2869" y="92" width="611" height="827" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="3229" y="185" width="611" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="802" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -447,8 +459,8 @@
         <state line="491" column="33" selection-start="15752" selection-end="15752" vertical-scroll-proportion="0.0" vertical-offset="7305" max-vertical-offset="15180">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -465,8 +477,8 @@
         <state line="512" column="0" selection-start="16325" selection-end="16325" vertical-scroll-proportion="0.0" vertical-offset="7620" max-vertical-offset="15165">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -483,8 +495,8 @@
         <state line="273" column="0" selection-start="8073" selection-end="8073" vertical-scroll-proportion="0.0" vertical-offset="4080" max-vertical-offset="14910">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -501,8 +513,8 @@
         <state line="772" column="0" selection-start="25681" selection-end="25681" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -519,8 +531,8 @@
         <state line="791" column="37" selection-start="26669" selection-end="26669" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11400">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -537,8 +549,8 @@
         <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="9570">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -559,18 +571,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vallat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="24" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="2745">
+        <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="-22.24" vertical-offset="734" max-vertical-offset="2745">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1591" column="32" selection-start="54182" selection-end="54182" vertical-scroll-proportion="29.702427" vertical-offset="608" max-vertical-offset="24045">
+        <state line="930" column="0" selection-start="30782" selection-end="30782" vertical-scroll-proportion="0.2575377" vertical-offset="13745" max-vertical-offset="25650">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
-            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="2487:3533" placeholder="..." />
+            <marker date="1395007110721" expanded="true" signature="13834:19401" placeholder="..." />
           </folding>
         </state>
       </provider>
