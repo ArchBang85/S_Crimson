@@ -20,6 +20,7 @@ import Vallat
 import winsound
 
 
+
 #size of window
 SCREEN_WIDTH = 130
 SCREEN_HEIGHT = 80
@@ -31,7 +32,7 @@ MAX_ROOM_MONSTERS = 3
 MAX_ROOM_ITEMS = 2
 
 #size of map
-MAP_WIDTH = 90
+MAP_WIDTH = 100
 MAP_HEIGHT = 55
 
 LIMIT_FPS = 20
@@ -60,9 +61,15 @@ HEAL_AMOUNT = 4 # how much a potion heals by
 LIGHTNING_RANGE = 5
 LIGHTNING_DAMAGE = 20
 
-color_dark_wall = libtcod.Color(0, 0, 100) # darker purple
+c_roll = libtcod.random_get_int(0, 0, 2)
+if c_roll == 1:
+    color_dark_wall = libtcod.Color(0, 0, 100) # darker purple
+    color_light_wall = libtcod.Color(50, 50, 150) # purplish
+else:
+    color_dark_wall = libtcod.Color(120, 150, 130) # dark green
+    color_light_wall = libtcod.Color(200, 220, 180) # lighter green
+
 color_dark_ground = libtcod.Color(25, 50, 150) # darkish purple/blue
-color_light_wall = libtcod.Color(50, 50, 150) # purplish
 color_light_ground = libtcod.Color(100, 85, 75) # light brown
 
 highlight_color = libtcod.Color(220, 140, 175) # pale pink
@@ -72,12 +79,14 @@ highlight_color = libtcod.Color(220, 140, 175) # pale pink
 # jitters
 #description move counter
 dCount = 250
-descriptionX = SCREEN_WIDTH - 40
+descriptionX = SCREEN_WIDTH - 36
 descriptionY = 0
 
 # initial image coordinates (only a sliver of the portraits are shown at any given time)
 imgX = libtcod.random_get_int(0, 12, 52)
 imgY = libtcod.random_get_int(0, 0, 32)
+
+ailmentCounter = libtcod.random_get_int(0, 80, 222)
 
 
 ###############################################################################
@@ -284,6 +293,18 @@ class Fighter:
         self.hp += amount
         if self.hp > self.max_hp:
             self.hp = self.max_hp
+
+def ailment(player):
+    global ailmentCounter
+
+    ailments = ["The disease gnaws within.", "Clusterings of pain cosset you.", "A sudden pain makes you hack and cough.", "A bolt of pain runs down your body."]
+
+    ailmentCounter -= 1
+    if ailmentCounter < 0:
+        ailmentCounter = libtcod.random_get_int(0, 50, 124)
+        message(ailments[libtcod.random_get_int(0, 0, len(ailments)-1)], libtcod.lighter_crimson)
+        player.fighter.take_damage(libtcod.random_get_int(0, 1, 4))
+
 
 def player_death(player):
     #game over
@@ -775,12 +796,18 @@ def targetOther(start, action, power):
         map[x][y].block_sight = False
 
 def targetNearest(start, action, power):
+    player = None
+    closest_enemy = None
     for object in objects:
-        if object.fighter and not object == player:
+        if object.name == 'You':
+            player = object
+
+    for object in objects:
+        if object.fighter and object.name != 'You':
             #calculate dist between object and player
             dist = player.distance(object)
             if dist < closest_dist: # keep track of the closest one so far
-                closest_enemy = objectclosest_dist
+                closest_enemy = object
         return closest_enemy
 
 def targetSelf(start, action, power):
@@ -944,10 +971,10 @@ def chooseTile(start):
 
         flashTile(x, y)
         fov_recompute = True
-        print 'rendering'
+        #print 'rendering'
         render_all()
         libtcod.console_flush()
-        print x,y
+        #print x,y
 
     return (x, y)
 
@@ -1056,15 +1083,18 @@ def render_all():
     ]
     y = 1
     for line in vowelMap:
+        output = ""
+        for l in line:
+            output += allowedLetters(l)
         libtcod.console_set_default_foreground(con, libtcod.brass)
-        libtcod.console_print_ex(con, SCREEN_WIDTH - 25, 40+y, libtcod.BKGND_NONE, libtcod.LEFT, line)
+        libtcod.console_print_ex(con, SCREEN_WIDTH - 22, 1+y, libtcod.BKGND_NONE, libtcod.LEFT, output)
         y += 1
 
     # Print the description lines
     # Randomise the description display point slightly
     dCount -= 1
     if dCount < 0:
-        descriptionX = SCREEN_WIDTH - 42 + libtcod.random_get_int(0, 0, 2)
+        descriptionX = SCREEN_WIDTH - 40 + libtcod.random_get_int(0, 0, 2)
         descriptionY = libtcod.random_get_int(0, 0, 2)
 
     y = 1
@@ -1078,7 +1108,7 @@ def render_all():
     # image natural size is 96 x 96
     # image, panel, x corner on panel, y corner on panel,
     # Xth pixel of image to start from, Yth pixel of image to start from width, height
-    buffer = 22
+    buffer = 20
     imgPath = str(get_image_under_mouse())
     img = libtcod.image_load(imgPath)
     #img = libtcod.image_load('kuvat\\portrait1.png')/
@@ -1088,7 +1118,7 @@ def render_all():
         dCount = libtcod.random_get_int(0, 250, 350)
 
     #answer should be 16 + 1 for black border
-    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 1, imgX, imgY, 35, 75)
+    libtcod.image_blit_2x(img, 0, SCREEN_WIDTH-buffer, 24, imgX, imgY, 35, 75)
 
     # display rune alphabet
     y = 4
@@ -1096,6 +1126,10 @@ def render_all():
         libtcod.console_print_ex(panel, 1, y, libtcod.BKGND_NONE, libtcod.LEFT, line)
         y += 1
     #print get_alphabet()
+
+    # display question mark
+
+    libtcod.console_print_ex(panel, SCREEN_WIDTH-2, 14, libtcod.BKGND_NONE, libtcod.RIGHT, "(?)")
 
     #blit the panel to the root console
     libtcod.console_blit(panel, 0, 0, SCREEN_WIDTH, PANEL_HEIGHT, 0, 0, PANEL_Y)
@@ -1134,8 +1168,6 @@ def player_move_or_attack(dx, dy):
 
 ### CONTROLS ##################################################################
 
-
-
 def handle_keys():
     global key
     global fov_recompute
@@ -1172,6 +1204,9 @@ def handle_keys():
             #check for other keys
             key_char = chr(key.c)
 
+            if key_char == '?':
+                print 'question'
+
             if key_char == 'g':
                 #pick item up
                 for object in objects:
@@ -1184,7 +1219,7 @@ def handle_keys():
                 active_item = inventory_menu('Press the relevant letter to use the item, anything else to cancel.\n')
                 if active_item is not None:
                     active_item.use()
-                    message('Used item.', libtcod.blue)
+                    message('Used item.', libtcod.light_crimson)
 
             if key_char == 'c':
                 #choose runes
@@ -1241,35 +1276,34 @@ def handle_keys():
 
                 message(str(castingOutcome), libtcod.darker_azure)
 
-            if key_char == "t":
-                #test line zap
-
-                print 'player is on tile %s %s' % (player.x, player.y)
-                lineShape([player.x, player.y], "access", 10)
-                fov_recompute = True
-                render_all()
+            #Debug controls
+            #if key_char == "t":
+            #    #test line zap
+            #
+            #    print 'player is on tile %s %s' % (player.x, player.y)
+            #   lineShape([player.x, player.y], "access", 10)
+            #   fov_recompute = True
+            #   render_all()
 
             if key_char == "a":
-                areaShape([player.x, player.y], "block", 20)
+                areaShape([player.x, player.y], "access", 20)
                 fov_recompute = True
                 render_all()
 
-            if key_char == "s":
-                targetOther([player.x, player.y], "block", 20)
-                fov_recompute = True
-                render_all()
+            #if key_char == "s":
+            #    targetOther([player.x, player.y], "block", 20)
+            #    fov_recompute = True
+            #    render_all()
 
-            if key_char == "g":
-                targetAll([player.x, player.y], "damage", 25)
-                fov_recompute = True
-                render_all()
+            #if key_char == "g":
+            #    targetAll([player.x, player.y], "damage", 25)
+            #    fov_recompute = True
+            #    render_all()
 
             return 'no-turn-taken'
-
         #
 
 ### ITEM FUNCTIONS ############################################################
-
 def cast_heal():
     #unit healing
     if player.fighter.hp == player.fighter.max_hp:
@@ -1292,9 +1326,25 @@ def cast_lightning():
 
 ### GUI FUNCTIONS ###
 
+def allowedLetters(letter):
+    # reduce letters from GUI when they have been cast
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    if letter.lower() in letters:
+        if letter.lower() in Vallat.alphabet:
+            return letter
+        else:
+            return " "
+    else:
+        return letter
+
 def message(new_msg, color = libtcod.white):
     #split message if needed
-    new_msg_lines = textwrap.wrap(new_msg, MSG_WIDTH)
+
+    new_msg_trim = ""
+    for a in new_msg:
+        new_msg_trim += allowedLetters(a)
+
+    new_msg_lines = textwrap.wrap(new_msg_trim, MSG_WIDTH)
 
     for line in new_msg_lines:
         #when the buffer is full, pop out the top line
@@ -1459,6 +1509,18 @@ def createFOV():
         for x in range(MAP_WIDTH):
             libtcod.map_set_properties(fov_map, x, y, not map[x][y].block_sight, not map[x][y].blocked)
 
+def checkForEnd():
+    o = 0
+    for object in objects:
+        if object.fighter and object.name != "You":
+            o += 1
+    #print 'there are %s monsters in play' % o
+    if o == 0:
+        return True # Game ends since all the bad memories have been reconciled
+    else:
+        return False
+
+
 ###############################################################################
 #                                                                     MAIN LOOP
 
@@ -1529,3 +1591,8 @@ while not libtcod.console_is_window_closed():
 
         # increment fov_range ticker
         torch_dimmer()
+
+        if checkForEnd():
+            message('You have accepted yourself and die with a relief.')
+            game_state = 'end'
+        ailment(player)

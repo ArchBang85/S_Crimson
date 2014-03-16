@@ -120,6 +120,9 @@ def checkRunes(runes):
         return "noPower"
 
     if runes[0] not in alphabet or runes[3] not in alphabet:
+        return "noPower"
+
+    if runes[0] not in alphabet or runes[3] not in alphabet:
         # runes forgotten
         return "forgotten"
 

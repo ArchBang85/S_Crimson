@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="956" />
+    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="983" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a99d6129-0f80-4083-8286-c3bf9b16b82c" name="Default" comment="" />
@@ -29,11 +29,11 @@
       <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1088" column="0" selection-start="37111" selection-end="37111" vertical-scroll-proportion="0.7547893" vertical-offset="15729" max-vertical-offset="23055">
+            <state line="1591" column="32" selection-start="54182" selection-end="54182" vertical-scroll-proportion="29.702427" vertical-offset="608" max-vertical-offset="24045">
               <folding>
                 <element signature="e#498#507#0" expanded="true" />
-                <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-                <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+                <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+                <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -51,7 +51,7 @@
       <file leaf-file-name="Vallat.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vallat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="2700">
+            <state line="122" column="24" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="2745">
               <folding />
             </state>
           </provider>
@@ -409,7 +409,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31050768" sideWeight="0.1950448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="2400" y="98" width="611" height="827" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="2869" y="92" width="611" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="802" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -447,8 +447,8 @@
         <state line="491" column="33" selection-start="15752" selection-end="15752" vertical-scroll-proportion="0.0" vertical-offset="7305" max-vertical-offset="15180">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -465,8 +465,8 @@
         <state line="512" column="0" selection-start="16325" selection-end="16325" vertical-scroll-proportion="0.0" vertical-offset="7620" max-vertical-offset="15165">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -483,8 +483,8 @@
         <state line="273" column="0" selection-start="8073" selection-end="8073" vertical-scroll-proportion="0.0" vertical-offset="4080" max-vertical-offset="14910">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -501,8 +501,8 @@
         <state line="772" column="0" selection-start="25681" selection-end="25681" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12540">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -519,8 +519,8 @@
         <state line="791" column="37" selection-start="26669" selection-end="26669" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11400">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -537,8 +537,8 @@
         <state line="304" column="33" selection-start="9387" selection-end="9387" vertical-scroll-proportion="0.0" vertical-offset="3381" max-vertical-offset="9570">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -559,18 +559,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Vallat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="32" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2700">
+        <state line="122" column="24" selection-start="3391" selection-end="3391" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="2745">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1088" column="0" selection-start="37111" selection-end="37111" vertical-scroll-proportion="0.7547893" vertical-offset="15729" max-vertical-offset="23055">
+        <state line="1591" column="32" selection-start="54182" selection-end="54182" vertical-scroll-proportion="29.702427" vertical-offset="608" max-vertical-offset="24045">
           <folding>
             <element signature="e#498#507#0" expanded="true" />
-            <marker date="1394986871277" expanded="true" signature="2034:3080" placeholder="..." />
-            <marker date="1394986871277" expanded="true" signature="12069:17569" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="2293:3339" placeholder="..." />
+            <marker date="1394996863328" expanded="true" signature="12818:18318" placeholder="..." />
           </folding>
         </state>
       </provider>
