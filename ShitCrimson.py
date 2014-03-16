@@ -266,6 +266,7 @@ class Fighter:
         if self.hp > self.max_hp:
             self.hp = self.max_hp
 
+
 def player_death(player):
     #game over
     global game_state
@@ -545,6 +546,20 @@ def areaShape(start, action, power):
     x = selected[0]
     y = selected[1]
 
+    thresholds = [1,5,9,13,17,21] # based on the alphabet
+
+    # max power is b - z = 25
+    # 1-4, 5-8, 9-12, 13-16, 17-20, 21-25
+    # need to balance the power with the area
+    for i in range(len(thresholds)-1, -1,-1):
+        if power > thresholds[i]:
+            level = i+1
+            print 'level ' + str(level)
+            break
+
+    # adjust the power algorithm here
+    power = power * 2 - level
+
     # limit range based on map edges
 
     #level1
@@ -629,15 +644,76 @@ def areaShape(start, action, power):
                         map[x][y].blocked = False
                         map[x][y].block_sight = False
                         map[x][y].explored = True
-                        #print 'flames at %s %s.' % (x, y)
 
-                        # Since the contours of the map have changed, we need to recreate the FOV
+                    if action == "block":
+                        map[x][y].blocked = True
+                        map[x][y].block_sight = True
+
+                    if action == "heal":
+                        for object in objects:
+                            if object.x == x and object.y == y and object.fighter:
+                                object.fighter.heal(power)
+                                if object.name != "You":
+                                    message ("%s seems reinvigorated." % object.name, libtcod.azure)
+                                else:
+                                    message ("You feel a moment of respite.", libtcod.azure)
+
+                    if action == "damage":
+                        for object in objects:
+                            if object.x == x and object.y == y and object.fighter:
+                                object.fighter.take_damage(power)
+                                if object.name != "You":
+                                    message ("%s spasms and jerks." % object.name, libtcod.dark_red)
+                                else:
+                                    message ("Convulsions unmoor your innards.", libtcod.brass)
+
+
+
             except:
                 print 'Tile %s, %s is out of bounds.' % (x, y)
-
+    # Since the contours of the map have changed, we need to recreate the FOV
     createFOV()
 
     fov_recompute = True
+
+def targetOther(start, action, power):
+    global map
+    target = chooseTile(start)
+    if power > 5:
+        power = power + libtcod.random_get_int(0, -2, 3)
+
+    x = target[0]
+    y = target[1]
+
+    if action == "damage":
+        for object in objects:
+            if object.x == x and object.y == y and object.fighter:
+                if object.name != "You":
+                    message("%s is enveloped in a mist of pain." % object.name, libtcod.dark_red)
+                    object.fighter.take_damage(power)
+                else:
+                    message("You are struck by stabbing pains.", libtcod.brass)
+                    object.fighter.take_damage(power)
+
+    if action == "heal":
+        for object in objects:
+            if object.x == x and object.y == y and object.fighter:
+                if object.name != "You":
+                    message("%s becomes starker and more fearsome." % object.name, libtcod.azure)
+                    object.fighter.heal(power)
+                else:
+                    message("You gain some composure.", libtcod.azure)
+
+    if action == "block":
+        map[x][y].blocked = True
+        map[x][y].block_sight = True
+
+    if action == "access":
+        map[x][y].blocked = False
+        map[x][y].block_sight = False
+
+
+
 
 ###############################################################################
 
@@ -824,9 +900,16 @@ def getDirection():
 
 def chooseTile(start):
     global fov_recompute
+    global fov_map
+    global map
     x = start[0]
     y = start[1]
     message("Select your target tile, then press Enter.", libtcod.light_gray)
+
+    flashTile(x, y)
+    fov_recompute = True
+    render_all()
+    libtcod.console_flush()
 
     selected = False
     while selected == False:
@@ -834,26 +917,34 @@ def chooseTile(start):
         key = libtcod.console_wait_for_keypress(True)
 
         if key.vk == libtcod.KEY_UP or key.vk == libtcod.KEY_KP8:
-            y -= 1
+            if libtcod.map_is_in_fov(fov_map, x, y-1):
+                y -= 1
         elif key.vk == libtcod.KEY_DOWN  or key.vk == libtcod.KEY_KP2:
-            y += 1
+            if libtcod.map_is_in_fov(fov_map, x, y+1):
+                y += 1
         elif key.vk == libtcod.KEY_LEFT  or key.vk == libtcod.KEY_KP4:
-            x -= 1
+            if libtcod.map_is_in_fov(fov_map, x-1, y):
+                x -= 1
         elif key.vk == libtcod.KEY_RIGHT or key.vk == libtcod.KEY_KP6:
-            x += 1
+            if libtcod.map_is_in_fov(fov_map, x+1, y):
+                x += 1
         #diagonals
         elif key.vk == libtcod.KEY_KP9 or key.vk == libtcod.KEY_PAGEUP:
-            x += 1
-            y -= 1
+            if libtcod.map_is_in_fov(fov_map, x+1, y-1):
+                x += 1
+                y -= 1
         elif key.vk == libtcod.KEY_KP3 or key.vk == libtcod.KEY_PAGEDOWN:
-            x += 1
-            y += 1
+            if libtcod.map_is_in_fov(fov_map, x+1, y+1):
+                x += 1
+                y += 1
         elif key.vk == libtcod.KEY_KP7 or key.vk == libtcod.KEY_HOME:
-            x -= 1
-            y -= 1
+            if libtcod.map_is_in_fov(fov_map, x-1, y-1):
+                x -= 1
+                y -= 1
         elif key.vk == libtcod.KEY_KP1 or key.vk == libtcod.KEY_END:
-            x -= 1
-            y -= 1
+                if libtcod.map_is_in_fov(fov_map, x-1, y+1):
+                    x -= 1
+                    y += 1
         elif key.vk == libtcod.KEY_ENTER:
             selected = True
 
@@ -864,11 +955,8 @@ def chooseTile(start):
         libtcod.console_flush()
         print x,y
 
-
-
     return (x, y)
 
-    ##return (x,y)
 
 def handle_keys():
     global key
@@ -947,15 +1035,22 @@ def handle_keys():
                 #test line zap
                 lineDirection = getDirection()
                 print 'player is on tile %s %s' % (player.x, player.y)
-                lineShape([player.x, player.y], lineDirection, action = "damage")
+                lineShape([player.x, player.y], lineDirection, action = "access")
 
                 fov_recompute = True
                 render_all()
 
             if key_char == "a":
-                areaShape([player.x, player.y], "access","")
+                areaShape([player.x, player.y], "block",20)
                 fov_recompute = True
                 render_all()
+
+            if key_char == "s":
+                targetOther([player.x, player.y], "block",20)
+                fov_recompute = True
+                render_all()
+
+
             return 'no-turn-taken'
 
         #
