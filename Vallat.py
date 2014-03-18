@@ -103,7 +103,7 @@ def spellPower(runes):
 
 def checkRunes(runes):
     # valid form [consonant, vowel, vowel, consonant]
-    print runes
+    #print runes
     if len(runes) <> 4:
         return "noForm"
     elif runes[1] not in vowels:
@@ -112,7 +112,7 @@ def checkRunes(runes):
 
     elif runes[2] not in vowels:
         # Error - spell has no content
-        print runes[2]
+        #print runes[2]
         return "noContent"
 
     if runes[0] and runes[3] not in consonants or runes[0] == runes[3]:

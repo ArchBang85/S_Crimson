@@ -29,7 +29,7 @@ ROOM_MAX_SIZE = 14
 ROOM_MIN_SIZE = 6
 MAX_ROOMS = 35
 MAX_ROOM_MONSTERS = 3
-MAX_ROOM_ITEMS = 3
+MAX_ROOM_ITEMS = 2
 
 #size of map
 MAP_WIDTH = 100
@@ -130,12 +130,6 @@ muistot = readCSVtoArray("sanat\\muistot.csv")
 kaunat = readCSVtoArray("sanat\\kaunat.csv")
 hajut = readCSVtoArray("sanat\\hajut.csv")
 kivut = readCSVtoArray("sanat\\kivut.csv")
-
-#print toimiVallat
-#print ilkiVallat
-#print ikkunat
-#print ovet
-#print esineet
 
 ###############################################################################
 #                                                                       CLASSES
@@ -397,11 +391,13 @@ def setImage(name):
     if name == "You":
         img = "kuvat\\portrait2.png"
     elif name == "Pain":
-        roll = libtcod.random_get_int(0, 0, 2)
+        roll = libtcod.random_get_int(0, 0, 3)
         if roll == 1:
             img = "kuvat\\portrait1.png"
-        else:
+        elif roll ==2:
             img = "kuvat\\portrait5.png"
+        else:
+            img = "kuvat\\portrait8.png"
     elif name == "Memory":
         img = "kuvat\\portrait3.png"
     elif name == "Vapour":
@@ -451,13 +447,13 @@ def create_monster(x, y):
         monster = Object(x, y, 'p', 'Pain', libtcod.lighter_purple, blocks=True, fighter = fighter_component, ai = ai_component)
 
     elif roll < 30 + 30 + 30:
-        fighter_component = Fighter(hp = 20, defense=1, power=5, death_function=monster_death, name="The regret")
+        fighter_component = Fighter(hp = 15, defense=1, power=5, death_function=monster_death, name="The regret")
         ai_component = BasicMonster()
         monster = Object(x, y, 'r', 'Regret', libtcod.lighter_chartreuse, blocks=True, fighter = fighter_component, ai = ai_component)
 
     else:
         # memory
-        fighter_component = Fighter(hp = 25, defense=2, power=6, death_function = monster_death, name="The memory")
+        fighter_component = Fighter(hp = 23, defense=2, power=6, death_function = monster_death, name="The memory")
         ai_component = BasicMonster()
         monster = Object(x, y, 'm', 'Memory', libtcod.dark_pink, blocks = True, fighter=fighter_component,ai = ai_component)
 
@@ -469,13 +465,13 @@ def create_item(x, y):
 
     if roll < 20:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '?', 'A beloved book', libtcod.violet, item = item_component)
+        item = Object(x, y, '?', 'A beloved book', libtcod.dark_green, item = item_component)
     elif roll < 40:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '*', 'Memento', libtcod.lightest_sepia, item = item_component)
+        item = Object(x, y, '*', 'Memento', libtcod.green, item = item_component)
     else:
         item_component = Item(use_function=cast_heal)
-        item = Object(x, y, '&', 'A familiar trinket', libtcod.lighter_yellow, item = item_component)
+        item = Object(x, y, '&', 'A familiar trinket', libtcod.lighter_green, item = item_component)
     objects.append(item)
     item.send_to_back()
 
@@ -633,8 +629,9 @@ def lineShape(start, action, power):
 
             if action == "heal":
             # what to do if you want to heal
-                activeTile.blocked = True
-                activeTile.block_sight = True
+                for object in objects:
+                    if object.fighter and object.fighter.hp > 0 and object.x == x and object.y == y:
+                        object.fighter.hp += power
 
             #print action
 
@@ -676,6 +673,8 @@ def areaShape(start, action, power):
     power = power * 2 - level
 
     # limit range based on map edges
+
+    # 'paint' impacted tiles
 
     #level1
     if level == 1:
@@ -817,6 +816,7 @@ def targetOther(start, action, power):
                     object.fighter.heal(power)
                 else:
                     message("You gain some composure.", libtcod.azure)
+                    object.fighter.heal(power)
 
     if action == "block":
         map[x][y].blocked = True
@@ -839,7 +839,16 @@ def targetNearest(start, action, power):
             dist = player.distance(object)
             if dist < closest_dist: # keep track of the closest one so far
                 closest_enemy = object
+
+        if action == "heal":
+            object.fighter.heal(power)
+        if action == "damage":
+            object.fighter.take_damage(power)
+
         return closest_enemy
+
+
+
 
 def targetSelf(start, action, power):
     x = start[0]

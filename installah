@@ -1,0 +1,3 @@
+import pyinstaller
+
+pyinstaller.--onefile shitcrimson.py
