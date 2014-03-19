@@ -12,8 +12,7 @@ plus it is completable and has a somewhat interesting spell system and not-quite
 
 How to get it up and running:
 
-19/3/2014 - I had some trouble compiling the thing with Pyinstaller, but it all seems to work fine if you download the files and run Shitcrimson.py in a Python 2.7 interpreter.
-            I will get a working compiled version on as soon as I can.
+19/3/2014 - I had some trouble compiling the thing with Pyinstaller, but it all seems to work fine if you download the files and run Shitcrimson.py in a Python 2.7 interpreter. I will get a working compiled version on as soon as I can.
 
 ============
 
@@ -30,7 +29,20 @@ apparitions will help. Dying well is not easy but you will try.
 
 Comments:
 
+Overall I was kind of aiming for something of a disturbing literary / aesthetic experience on top of a solidly working combinatorial spell system.
 
+The themes I wanted to deal with were pretty heavy: facing mortality, memory, the nature of repetition in games / RLs 
+
+So a bit of inspiration was coming from the likes of Borges, Dante, Philip K. Dick and Gene Wolfe.
+
+The whole shebang also links up to a fictional future-decayed universe I've been working on in general.
+
+
+============
+
+Things left to do:
+
+Plenty! I call this entry 'complete' mainly only because I managed to get something playable after a week of a thousand interruption and learning to do Roguelikey things for the first time, but as seems to often be the case with 7DRLs much that was planned was cut out and many improvements loom as future possibilities.
 
 ============
 
@@ -95,3 +107,5 @@ The second Vowel sets the Content of the spell (Hurt, Heal, Open, Close, unimple
        #
         #
 Good bye.
+
+ArchBang
