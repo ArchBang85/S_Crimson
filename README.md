@@ -46,52 +46,53 @@ Spoilers:
 
 
 Revealing the spell system's workings
-
-
-
-
-
-
-
-
-
+#
+ #
+  #
+   #
+    #
+     #
+      #
+       #
+        #
 Valid words are structured Consonant-Vowel-Vowel-Consonant
-
-
-
-
-
-
-
-
-
+        #
+       #
+      #
+     #
+    # 
+   #
+  #
+ #
+#
 The Consonants set the level of power
-
-
-
-
-
-
-
-
-
+#
+ #
+  #
+   #
+    #
+     #
+      #
+       #
+        #
 The first Vowel sets the Form of the spell (Area, Line, Target, Self, Nearest, All)
-
-
-
-
-
-
-
-
-
-The first Vowel sets the Content of the spell (Hurt, Heal, Open, Close, unimplemented:[Wisdom, Ignorance])
-
-
-
-
-
-
-
-
+        #
+       #
+      #
+     #
+    # 
+   #
+  #
+ #
+#
+The second Vowel sets the Content of the spell (Hurt, Heal, Open, Close, unimplemented:[Wisdom, Ignorance])
+#
+ #
+  #
+   #
+    #
+     #
+      #
+       #
+        #
 Good bye.
