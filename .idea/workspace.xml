@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="1028" />
+    <bookmark url="file://$PROJECT_DIR$/ShitCrimson.py" description="### MAP DRAWING ##################################..." line="1030" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a99d6129-0f80-4083-8286-c3bf9b16b82c" name="Default" comment="" />
@@ -29,8 +29,48 @@
       <file leaf-file-name="ShitCrimson.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="399" column="39" selection-start="13353" selection-end="13353" vertical-scroll-proportion="0.45901638" vertical-offset="5490" max-vertical-offset="25710">
+            <state line="1379" column="26" selection-start="47508" selection-end="47508" vertical-scroll-proportion="0.46284226" vertical-offset="27125" max-vertical-offset="34380">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Folder_Renamer.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Tools/Folder_Renamer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="31" selection-start="2909" selection-end="2909" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2300">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FolderStructureToJSON.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Tools/FolderStructureToJSON.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="20" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="2300">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SC_ToExe.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SC_ToExe.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+              <folding>
+                <element signature="e#22#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Setup.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="13" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+              <folding>
+                <element signature="e#22#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,7 +78,7 @@
       <file leaf-file-name="musicConverter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/musicConverter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="105">
+            <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="140">
               <folding />
             </state>
           </provider>
@@ -47,7 +87,7 @@
       <file leaf-file-name="Vallat.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vallat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="6" selection-start="3179" selection-end="3179" vertical-scroll-proportion="0.0" vertical-offset="1310" max-vertical-offset="2745">
+            <state line="117" column="6" selection-start="3179" selection-end="3179" vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="3660">
               <folding />
             </state>
           </provider>
@@ -70,15 +110,15 @@
         <option value="$PROJECT_DIR$/musicConverter.py" />
         <option value="$PROJECT_DIR$/installah" />
         <option value="$PROJECT_DIR$/Vallat.py" />
+        <option value="$PROJECT_DIR$/SC_ToExe.py" />
+        <option value="$PROJECT_DIR$/Setup.py" />
         <option value="$PROJECT_DIR$/ShitCrimson.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="width" value="960" />
+    <option name="height" value="986" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -126,8 +166,8 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ShitCrimson.py" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tools/Folder_Renamer.py" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -136,6 +176,12 @@
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Autio\PycharmProjects\Tools" />
+      <recent name="C:\Users\Autio\PycharmProjects\ShitCrimson" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.ShitCrimson">
     <configuration default="false" name="ShitCrimson" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -395,8 +441,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="0" width="960" height="986" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -406,7 +452,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31050768" sideWeight="0.1950448" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="false" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="2017" y="177" width="611" height="827" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="FLOATING" visible="true" weight="0.31137088" sideWeight="0.8049552" order="2" side_tool="false" content_ui="tabs" x="992" y="103" width="870" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="802" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -432,34 +478,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Vallat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="512" column="0" selection-start="16325" selection-end="16325" vertical-scroll-proportion="0.0" vertical-offset="7620" max-vertical-offset="15165">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vallat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="3953" selection-end="3953" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="273" column="0" selection-start="8073" selection-end="8073" vertical-scroll-proportion="0.0" vertical-offset="4080" max-vertical-offset="14910">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Vallat.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="174" column="0" selection-start="4538" selection-end="4538" vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="2700">
@@ -509,16 +527,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../SC_Try/ShitCrimson/ShitCrimson.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="23" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25575" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installah">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="36" selection-start="56" selection-end="56" vertical-scroll-proportion="0.036540803" vertical-offset="0" max-vertical-offset="821" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SC_ToExe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <folding>
+            <element signature="e#22#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <folding>
+            <element signature="e#22#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/musicConverter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../SC_Try/ShitCrimson/ShitCrimson.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="23" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Vallat.py">
@@ -528,14 +569,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/installah">
+    <entry file="file://$PROJECT_DIR$/../Tools/Folder_Renamer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="56" selection-end="56" vertical-scroll-proportion="0.036540803" vertical-offset="0" max-vertical-offset="821" />
+        <state line="72" column="31" selection-start="2909" selection-end="2909" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2300">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Tools/FolderStructureToJSON.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="20" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="2300">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ShitCrimson.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="399" column="39" selection-start="13353" selection-end="13353" vertical-scroll-proportion="0.45901638" vertical-offset="5490" max-vertical-offset="25710">
+        <state line="1379" column="26" selection-start="47508" selection-end="47508" vertical-scroll-proportion="0.46284226" vertical-offset="27125" max-vertical-offset="34380">
           <folding />
         </state>
       </provider>

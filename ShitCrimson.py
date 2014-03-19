@@ -851,6 +851,7 @@ def targetNearest(start, action, power):
 
 
 def targetSelf(start, action, power):
+    global map
     x = start[0]
     y = start[1]
 
@@ -876,6 +877,7 @@ def targetSelf(start, action, power):
 def targetAll(start, action, power):
     # target a spell on every creature
     global map
+    level = 0
     thresholds = [1,5,9,13,17,21] # based on the alphabet
     message("You try to reach out to everything there is.", libtcod.white)
     # tries to target all but is limited by the power
@@ -1372,12 +1374,15 @@ def handle_keys():
 ### ITEM FUNCTIONS ############################################################
 def cast_heal():
     #unit healing
+    global HEAL_AMOUNT
     if player.fighter.hp == player.fighter.max_hp:
         message('You have no wounds to heal.', libtcod.red)
         return 'cancelled'
 
     message('You feel better.', libtcod.light_cyan)
     player.fighter.heal(HEAL_AMOUNT)
+    HEAL_AMOUNT = libtcod.random_get_int(0, 3, 6) # randomise next heal (improve this)
+
 
 def cast_lightning():
     # find the closest enemy within a maximum range and damage it
