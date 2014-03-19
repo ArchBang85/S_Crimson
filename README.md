@@ -21,8 +21,7 @@ Synopsis:
 
 You, ostensibly a man in middle age, are dying a miserable death. Something eats away at your bowels. 
 Your disease, or the medication you are taking for it, is bringing out the things you have locked away 
-over the years. Your mind and memory are failing, but you feel compelled to try and make amends with your past.
-Perhaps you are able to come to accept your traumas. You do not have much in this house of yours, but you
+over the years. Your mind and memory are failing, but you feel compelled to try and make amends with your complicated past. Perhaps you are able to come to accept your traumas. You do not have much in this house of yours, but you
 feel it might listen to you, the house or some more stable part of your mind. You can try to appeal to this
 power by calling out the words it recognises, word you will need to discover or invent. Maybe confronting your 
 apparitions will help. Dying well is not easy but you will try.
