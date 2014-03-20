@@ -11,7 +11,11 @@ Shit Crimson is my first Roguelike game and much remains to improve but it achie
 
 How to get it up and running:
 
-19/3/2014 - I had some trouble compiling the thing with Pyinstaller, but it all seems to work fine if you download the files and run Shitcrimson.py in a Python 2.7 interpreter. I will get a working compiled version on as soon as I can. If you have issues feel free to email me at ArchBang85@gmail.com
+20/3/2014 - You can get a compiled version from here: http://archbang.itch.io/shit-crimson I used cxFreeze instead of Pyinstaller and it seems to work fine now.
+
+19/3/2014 - {I had some trouble compiling the thing with Pyinstaller, but it all seems to work fine if you download the files and run Shitcrimson.py in a Python 2.7 interpreter. I will get a working compiled version on as soon as I can} 
+
+If you have issues feel free to email me at ArchBang85@gmail.com
 
 ============
 
