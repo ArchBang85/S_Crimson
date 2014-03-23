@@ -75,8 +75,8 @@ The second Vowel sets the Content of the spell (Hurt, Heal, Open, Close, unimple
 
 Further Spoiler (If You Are Stumped):
 
-For instance B-A-A-M would create an Area spell [first A] with a Damage effect [second A] and a power of M[letter index 13] - B[letter index 2] = 11
+For instance B-A-A-M would create an Area spell [first A] with a DamAge effect [second A] and a power of M[letter index 13] - B[letter index 2] = 11
 
-And N-I-O-T will create a line spell with a wall opening effect and a range determined by the distance between the consonants.
+And N-I-O-T will create a line spell with a blOcking effect and a range determined by the distance between the consonants.
 
 Good bye.
