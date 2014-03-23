@@ -67,7 +67,7 @@ Revealing the spell system's workings
 
 Valid words are structured Consonant-Vowel-Vowel-Consonant
         
-The Consonants set the level of power
+The Consonants set the level of power, i.e. the further the consonants are from each other, the more power the word has
 
 The first Vowel sets the Form of the spell (Area, Line, Target, Self, Nearest, All)
       
